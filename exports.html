@@ -249,8 +249,59 @@ document.addEventListener('click',function(e){
  if(e.target.id==='ovl'){[].forEach.call(document.querySelectorAll('#ovl,.drw'),function(n){n.style.display='none'});return}
  var el=e.target.closest('.tile,.side .sub,.side .it,.cbtn,.pr,.btn,.dt tr,.pc,.tabs span,.newapp,.po,.opt,.badge,.x,h4 span,.seg span,.fpill');if(!el)return;
  var x=txt(el);
- if(el.matches('.seg span,.fpill')){[].forEach.call(el.parentNode.children,function(c){c.classList.remove('on')});return el.classList.add('on')}
+ if(el.matches('.seg span,.fpill'))return window.protoFilter(el);
  (document.body.dataset.kind==='client'?client:central)(el,x);
 });
 })();
-</script></body></html>
+</script><script>
+(function(){
+var NOOP=/^(All|All loans|All funds|All types|All time|Accounting|Last 12 months)$/;
+var SAMPLE=/^(Last 3M|Last 6M|Last 12M|Banking|Duplicates|PDF bank statements|20\d\d)$/;
+var META={'Greenline Talent, LLC':'ECF1 RBF Active','Front Range Compost':'ECF1 RBF Active','FiberCore Inc.':'ECF2 CGA Active','Flexa Storage':'ECF2 CGA Active','Verdant Energy Solutions':'ECF2 CGA Active','GridPoint Labs, LLC':'ECF2 TRL Paid','Rooftop Power LLC':'ECF2 CGA Active','Polyloop Inc.':'ECF1 CGA Paid','Voltway EV':'ECF2 CGA Paid'};
+var T=function(e){return e.textContent.replace(/\s+/g,' ').trim()};
+function toastMsg(m){var t=document.querySelector('.toast');if(!t)return;t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on')},2400)}
+function groupOf(el){ // pills between spacers form one single-select group
+ if(el.parentNode.classList.contains('seg'))return [].slice.call(el.parentNode.children);
+ var g=[el],p=el.previousElementSibling;while(p&&p.classList.contains('fpill')){g.unshift(p);p=p.previousElementSibling}
+ p=el.nextElementSibling;while(p&&p.classList.contains('fpill')){g.push(p);p=p.nextElementSibling}return g}
+function tokens(){var out=[];[].forEach.call(document.querySelectorAll('.seg span.on,.fpill.on'),function(e){if(!e.closest('.drw'))out.push(T(e))});return out}
+function cellsOf(tr){var c=[].map.call(tr.children,T);var m=META[c[0]];if(m)c=c.concat(m.split(' '));return c}
+function has(c,re){return c.some(function(x){return re.test(x)})}
+function pass(tok,c,all){
+ if(NOOP.test(tok)||SAMPLE.test(tok))return true;
+ if(tok==='Past products')return has(c,/^(Funding #[12]|Bookkeeping.*)$/);
+ if(tok==='In progress')return has(c,/^in_progress$/);
+ if(tok==='Repaid')return has(c,/^repaid$/i);
+ if(tok==='Repeat borrowers'){var n=c[1];return all.filter(function(r){return r[1]===n}).length>1}
+ if(tok==='Active')return has(c,/^(Active|Overdue)$/i);
+ if(tok==='Contracts')return has(c,/^contracts$/i);
+ if(tok==='Term sheet')return has(c,/term sheet/i);
+ var t=tok.toLowerCase();return c.some(function(x){return x.toLowerCase()===t});
+}
+function apply(){
+ var tb=document.querySelector('.main table.dt');if(!tb)return;
+ var rows=[].filter.call(tb.rows,function(r){return !r.querySelector('th')&&!r.classList.contains('grp')&&!r.classList.contains('nomatch')});
+ var toks=tokens(),q=(document.querySelector('.srch input')||{}).value||'';q=q.trim().toLowerCase();
+ var all=rows.map(cellsOf),shown=0;
+ rows.forEach(function(r,i){var ok=toks.every(function(t){return pass(t,all[i],all)})&&(!q||T(r).toLowerCase().indexOf(q)>-1);r.style.display=ok?'':'none';if(ok)shown++});
+ [].forEach.call(tb.querySelectorAll('tr.grp'),function(g){var n=g.nextElementSibling,any=false;while(n&&!n.classList.contains('grp')){if(n.style.display!=='none'&&!n.classList.contains('nomatch'))any=true;n=n.nextElementSibling}g.style.display=any?'':'none'});
+ var nm=tb.querySelector('tr.nomatch');if(!nm){nm=tb.insertRow(-1);nm.className='nomatch';var td=nm.insertCell(0);td.colSpan=30;td.style.cssText='text-align:center;padding:28px;color:#98a2b6';td.textContent='Nothing matches these filters.'}
+ nm.style.display=shown?'none':'';
+}
+window.protoFilter=function(el){groupOf(el).forEach(function(c){c.classList.remove('on')});el.classList.add('on');var x=T(el);if(SAMPLE.test(x))toastMsg('The sample data does not vary by “'+x+'”');apply()};
+// search boxes become real inputs
+[].forEach.call(document.querySelectorAll('.srch'),function(s){var ph=T(s).replace(/^🔍\s*/,'');s.innerHTML='🔍&nbsp;<input placeholder="'+ph+'" style="border:0;outline:0;background:transparent;font:inherit;color:#1f2a44;width:100%">';s.querySelector('input').addEventListener('input',apply)});
+// Company Task Center chips
+var h4=[].filter.call(document.querySelectorAll('h4'),function(h){return /Company Task Center/.test(T(h))})[0];
+if(h4){var card=h4.parentNode,trs=[].filter.call(card.children,function(n){return n!==h4});var chips=[].slice.call(h4.querySelectorAll('.chip'));var prod=chips.slice(0,3),stat=chips.slice(3);var sel={p:'All',s:'Active'};
+ function mark(){prod.forEach(function(c){c.style.outline=T(c).indexOf(sel.p)===0?'2px solid #12b48c':'none';c.style.outlineOffset='1px'});stat.forEach(function(c){c.style.outline=T(c).indexOf(sel.s)===0?'2px solid #12b48c':'none';c.style.outlineOffset='1px'})}
+ function run(){var shown=0;trs.forEach(function(r){if(r.classList.contains('tnone'))return;var isTask=!!r.querySelector('.chip');if(!isTask)return;var ok=(sel.p==='All'||T(r).indexOf(sel.p)>-1)&&sel.s!=='Overdue';r.style.display=ok?'grid':'none';if(ok)shown++});
+  var e=card.querySelector('.tnone');if(trs.some(function(r){return r.querySelector&&r.querySelector('.chip')})){if(!e){e=document.createElement('div');e.className='tnone';e.style.cssText='text-align:center;padding:22px;color:#98a2b6;font-size:13px';card.appendChild(e)}e.textContent=sel.s==='Overdue'?'No overdue tasks.':'No tasks for this product.';e.style.display=shown?'none':'block'}mark()}
+ chips.forEach(function(c){c.style.cursor='pointer';c.addEventListener('click',function(ev){ev.stopPropagation();var x=T(c).replace(/\s*[·\d]+$/,'').replace(/\s+\d+$/,'').trim();if(prod.indexOf(c)>-1)sel.p=x;else sel.s=x;
+   if(!trs.some(function(r){return r.querySelector&&r.querySelector('.chip')})&&!/no-tasks/.test(location.pathname)){location.href='company-tasks-open.html#'+encodeURIComponent(sel.p+'|'+sel.s);return}run()})});
+ if(location.hash.length>1){var a=decodeURIComponent(location.hash.slice(1)).split('|');if(a[1]){sel.p=a[0];sel.s=a[1]}}run();
+}
+apply();
+})();
+</script>
+</body></html>
