@@ -1,0 +1,215 @@
+<!doctype html><html data-theme="light"><head><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Documents · re-label · prototype</title><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+*{box-sizing:border-box} body{margin:0;width:1600px;height:1000px;overflow:hidden;font-family:Poppins,"Segoe UI",sans-serif;font-size:14px;color:#1f2a44;background:#fff}
+.top{height:76px;display:flex;align-items:center;padding:0 32px;border-bottom:1px solid #eef1f6;background:#fff}
+.logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:600;color:#1f2a44}
+.logo b{color:#12b48c;font-weight:600}
+.logo .mk{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#12b48c,#7ee3c6);position:relative}
+.tabs{margin:0 auto;display:flex;gap:34px;font-size:17px;color:#3b4661;transform:translateX(-30px)}
+.tabs span.on{color:#1f2a44;font-weight:600}
+.tabs span.new{position:relative}
+.tabs span.new::after{content:"NEW";position:absolute;top:-12px;right:-30px;font-size:8px;font-weight:700;letter-spacing:.08em;color:#0a8c6e;background:#e4faf4;padding:2px 6px;border-radius:999px}
+.acct{width:38px;height:38px;border-radius:50%;border:2px solid #1f2a44;display:flex;align-items:center;justify-content:center;font-size:16px}
+.layout{display:grid;grid-template-columns:276px 1fr;height:924px}
+.rail{background:#fafbfd;border-right:1px solid #eef1f6;padding:22px 20px;display:flex;flex-direction:column}
+.rail .h{display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px;margin-bottom:14px}
+.rail .h small{color:#98a2b6;font-weight:500;font-size:12px}
+.rail .h .col{margin-left:auto;width:28px;height:28px;border:1px solid #e6eaf1;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#6b7690;font-size:12px;background:#fff}
+.rail .grp{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#98a2b6;font-weight:600;margin:8px 0 8px}
+.pc{background:#fff;border:1px solid #e6eaf1;border-radius:12px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;font-weight:500;color:#1f2a44;flex-wrap:wrap}
+.pc.on{border:2px solid #12b48c;font-weight:600;box-shadow:0 2px 8px rgba(18,180,140,.16)}
+.pc.on .nm::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#12b48c;margin-right:8px;vertical-align:middle}
+.pc.past{background:#fafbfd;color:#98a2b6;font-weight:400}
+.badge{font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:#e6f0ff;color:#2e5fd6}
+.badge.v{background:#f0e8ff;color:#6b3fd6}.badge.g{background:#e4faf4;color:#0a8c6e}.badge.gr{background:#eef1f6;color:#98a2b6}.badge.a{background:#fff5d6;color:#8a6400}.badge.r{background:#fde8ea;color:#c9364a}
+.rail .newapp{margin-top:auto;border:1.5px dashed #cfd6e0;border-radius:12px;padding:12px;text-align:center;color:#3b4661;font-weight:500;background:#fff}
+.rail .newapp.dis{color:#b8c2d3}
+.main{padding:40px 64px;overflow:hidden}
+h1{font-size:38px;font-weight:700;margin:0 0 6px;line-height:1.2}
+h1 em{font-style:normal;color:#f5b400}
+h1 em.g{color:#12b48c}
+.sub{font-size:22px;color:#1f2a44;margin:10px 0 24px}
+.sub.s{font-size:15px;color:#4b5772}
+.card{background:#f7f9fc;border-radius:14px;padding:26px 30px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.card h3{margin:0 0 14px;font-size:16px;font-weight:600;display:flex;align-items:center;gap:10px}
+.card h3 .x{margin-left:auto;font-size:12px;color:#12b48c;font-weight:600}
+.kv{display:grid;grid-template-columns:1fr auto;gap:10px 14px;font-size:14px;color:#4b5772}
+.kv b{color:#1f2a44;font-weight:600;text-align:right}
+.li{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #e8ecf3;font-size:14px;color:#3b4661}
+.li:last-child{border-bottom:none}.li .m{color:#98a2b6;font-size:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:8px;padding:13px 26px;font-weight:600;font-size:15px;background:#12d9a5;color:#fff}
+.btn.o{background:#fff;border:1.5px solid #d9dfe9;color:#1f2a44}
+.btn.link{background:none;color:#2e5fd6;padding:0;font-weight:500}
+.steps{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 16px}
+.steps span{font-size:11px;padding:6px 11px;border-radius:999px;background:#eef1f6;color:#7d879c;font-weight:600}
+.steps span.done{background:#e4faf4;color:#0a8c6e}.steps span.cur{background:#1f2a44;color:#fff}
+.chk{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:14px;color:#3b4661}
+.chk i{width:18px;height:18px;border-radius:50%;border:1.5px solid #cfd6e0;display:inline-block;flex-shrink:0}
+.chk.d i{background:#12b48c;border-color:#12b48c}.chk.d{color:#98a2b6;text-decoration:line-through}
+.drop{border:2px dashed #b9e9db;background:#f3fcf9;border-radius:12px;padding:22px;text-align:center;color:#0a8c6e;font-weight:600}
+.drop small{display:block;color:#7d879c;font-weight:400;margin-top:4px}
+.seg{display:inline-flex;border:1px solid #e6eaf1;border-radius:10px;overflow:hidden;background:#fff}
+.seg span{padding:9px 16px;font-size:13px;color:#4b5772;border-right:1px solid #e6eaf1}.seg span:last-child{border-right:none}.seg span.on{color:#0a8c6e;font-weight:600;box-shadow:inset 0 -2px 0 #12b48c}
+.doc{display:grid;grid-template-columns:22px 1fr auto auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #e8ecf3;font-size:14px}
+.doc:last-child{border-bottom:none}.doc .m{color:#98a2b6;font-size:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px}.tbl th{text-align:left;color:#98a2b6;font-weight:600;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:6px 0;border-bottom:1px solid #e8ecf3}.tbl td{padding:9px 0;border-bottom:1px solid #eef1f6;color:#3b4661}.tbl td.r,.tbl th.r{text-align:right}.tbl td.r{font-weight:600;color:#1f2a44}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.kpi div{background:#fff;border:1px solid #e6eaf1;border-radius:12px;padding:14px 16px}
+.kpi b{display:block;font-size:22px;font-weight:700}
+.kpi span{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#98a2b6;font-weight:600}
+/* form */
+.stepper{display:flex;gap:0;margin:0 0 26px}
+.stepper div{flex:1;text-align:center;font-size:12.5px;color:#98a2b6;font-weight:500;position:relative;padding-top:22px}
+.stepper div::before{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:12px;height:12px;border-radius:50%;background:#e6eaf1}
+.stepper div::after{content:"";position:absolute;top:11px;left:50%;right:-50%;height:2px;background:#e6eaf1}
+.stepper div:last-child::after{display:none}
+.stepper div.on{color:#1f2a44;font-weight:600}.stepper div.on::before{background:#12b48c;box-shadow:0 0 0 4px #e4faf4}
+.stepper div.done::before{background:#12b48c}.stepper div.done::after{background:#12b48c}
+.fld{display:grid;gap:6px}
+.fld label{font-size:12px;color:#7d879c;display:flex;justify-content:space-between}
+.fld label i{font-style:normal;font-size:10.5px;color:#98a2b6}
+.fld .in{height:46px;border:1.5px solid #e6eaf1;border-radius:10px;background:#fff;display:flex;align-items:center;padding:0 14px;color:#1f2a44;font-size:14px}
+.fld .in.ro{background:#f1f4f8;color:#7d879c;border-style:solid}
+.fld .in.ro::after{content:"🔒";margin-left:auto;font-size:12px}
+.fld .in.new{border-color:#12b48c;color:#98a2b6}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+.note{background:#e4faf4;color:#0a8c6e;border-radius:10px;padding:12px 16px;font-size:13.5px;display:flex;gap:10px;align-items:center;margin-bottom:22px}
+.sect{font-size:15px;font-weight:600;margin:22px 0 12px;display:flex;align-items:center;gap:10px}
+.sect .badge{margin-left:2px}
+</style><style>body{height:900px}.layout{height:824px}</style><style>
+body{position:relative}
+.eb{display:flex;align-items:center;gap:22px;border-radius:16px;padding:24px 28px;margin:6px 0 24px;border:1px solid #cdeee3;background:linear-gradient(90deg,#f0fcf8,#fff)}
+.eb.off{border-color:#e6eaf1;background:#f7f9fc}
+.eb .st{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:#e4faf4;color:#0a8c6e}
+.eb.off .st{background:#eef1f6;color:#7d879c}
+.eb .st i{width:8px;height:8px;border-radius:50%;background:#12b48c;display:inline-block}
+.eb.off .st i{background:#b8c2d3}
+.eb h2 em{font-style:normal;color:#0a8c6e}
+.eb.off h2 em{color:#7d879c}
+.eb h2{margin:0 0 6px;font-size:26px;font-weight:700}
+.eb p{margin:0;font-size:15px;color:#4b5772}
+.eb .act{margin-left:auto;flex-shrink:0}
+.dropbig{border:2px dashed #b9e9db;background:#f3fcf9;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 32px;min-height:520px;gap:6px}
+.dropbig .ic{width:72px;height:72px;border-radius:50%;background:#e4faf4;color:#0a8c6e;font-size:30px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.dropbig h3{margin:0;font-size:20px;font-weight:700;color:#1f2a44}
+.dropbig p{margin:0 0 16px;font-size:14.5px;color:#4b5772}
+.dropbig small{margin-top:12px;font-size:12px;color:#98a2b6}
+.dropbig .hint{margin-top:26px;font-size:13px;color:#4b5772;background:#fff;border:1px solid #cdeee3;border-radius:10px;padding:12px 16px;max-width:380px;line-height:1.5}
+.pop{position:absolute;top:26px;right:0;width:310px;background:#fff;border:1px solid #e6eaf1;border-radius:12px;box-shadow:0 14px 40px rgba(31,42,68,.18);padding:12px;z-index:10;text-align:left}
+.pop .ph{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;margin:2px 4px 8px}
+.pop .po{display:flex;gap:10px;align-items:flex-start;border:1.5px solid #e6eaf1;border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.pop .po:last-child{margin-bottom:0}
+.pop .po.on{border-color:#12b48c;background:#f3fcf9}
+.pop .po .rd{width:16px;height:16px;border-radius:50%;border:2px solid #cfd6e0;flex-shrink:0;margin-top:2px}
+.pop .po.on .rd{border-color:#12b48c;box-shadow:inset 0 0 0 3px #fff;background:#12b48c}
+.pop .po b{display:block;font-size:13.5px;font-weight:600;color:#1f2a44}
+.pop .po span{font-size:12px;color:#7d879c}
+.drop.s{padding:12px 18px;display:flex;align-items:center;gap:12px;text-align:left}
+.drop.s small{display:inline;margin:0}
+.ov{position:absolute;inset:0;background:rgba(31,42,68,.45);display:flex;align-items:center;justify-content:center;z-index:20}
+.modal{width:600px;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(31,42,68,.35);padding:28px 30px}
+.modal h3{margin:0 0 4px;font-size:21px;font-weight:700}
+.modal .sub2{font-size:13.5px;color:#7d879c;margin-bottom:18px}
+.opt{display:flex;gap:12px;align-items:flex-start;border:1.5px solid #e6eaf1;border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.opt.on{border-color:#12b48c;background:#f3fcf9}
+.opt .rd{width:18px;height:18px;border-radius:50%;border:2px solid #cfd6e0;flex-shrink:0;margin-top:3px}
+.opt.on .rd{border-color:#12b48c;box-shadow:inset 0 0 0 4px #fff;background:#12b48c}
+.opt b{display:block;font-size:15px;font-weight:600}
+.opt span{font-size:13px;color:#7d879c}
+.filebox{display:flex;align-items:center;gap:10px;border:1px solid #e6eaf1;border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:14px}
+.filebox .m{margin-left:auto;color:#98a2b6;font-size:12px}
+.ft{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+.req{border:1.5px solid #f3e2b3;background:#fffaf0;border-radius:16px;padding:22px 26px;margin:0 0 24px;display:flex;gap:20px;align-items:center}
+.req .ic{width:52px;height:52px;border-radius:50%;background:#fff1c9;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.req h3{margin:0 0 4px;font-size:18px;font-weight:700}
+.req p{margin:0;color:#4b5772;font-size:14px;line-height:1.5}
+</style><style>html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visible!important;height:auto!important;min-height:100vh;position:relative;transform-origin:top left}.layout{height:auto!important;min-height:calc(100vh - 76px)}.main{overflow:visible!important}.ov,.ovl{position:fixed!important}
+.tile,.sub,.it,.btn,.cbtn,.pr,.pc,.tabs span,.newapp,.dt tr,.badge,.po,.x,.opt,.pnav a,.seg span,.fpill,.chip.o{cursor:pointer}
+.pnav{position:fixed;left:16px;bottom:16px;z-index:999;font:500 13px/1.3 -apple-system,Segoe UI,sans-serif}
+.pnav summary{list-style:none;background:#1f2a44;color:#fff;padding:9px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25);cursor:pointer}
+.pnav summary::-webkit-details-marker{display:none}
+.pnav .box{position:absolute;bottom:44px;left:0;background:#fff;border:1px solid #dfe5ee;border-radius:12px;box-shadow:0 14px 40px rgba(31,42,68,.2);padding:6px;width:330px;max-height:70vh;overflow:auto}
+.pnav h6{margin:8px 12px 4px;font:600 10px/1 -apple-system,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6}
+.pnav a{display:block;padding:7px 12px;border-radius:8px;color:#1f2a44;text-decoration:none}.pnav a:hover,.pnav a.on{background:#eafaf4;color:#0a8c6e}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#1f2a44;color:#fff;padding:11px 18px;border-radius:10px;font:500 13px -apple-system,sans-serif;z-index:1000;opacity:0;transition:opacity .2s;pointer-events:none}.toast.on{opacity:1}
+</style></head><body data-kind="client"><div class="top"><div class="logo"><span class="mk"></span>Enduring <b>Planet</b></div><div class="tabs"><span class=" ">Status</span><span class=" new">Loan</span><span class="on ">Documents</span><span class=" ">Accounts</span></div><div class="acct">☺</div></div><div class="layout"><div class="rail"><div class="h">My Products <small>5</small><span class="col">‹</span></div><div class="grp">Active · 2</div><div class="pc on"><span class="nm">Funding #3</span><span class="badge v">In Review</span></div><div class="pc"><span class="nm">FP&A</span><span class="badge g">Active</span></div><div class="grp">Past · 3 <span style="float:right">⌃</span></div><div class="pc past"><span class="nm">Funding #2</span><span class="badge r">Repaid</span></div><div class="pc past"><span class="nm">Funding #1</span><span class="badge r">Rejected</span></div><div class="pc past"><span class="nm">Bookkeeping & Accounting</span><span class="badge r">Inactive</span></div><div class="newapp dis">+ New application</div></div><div class="main">
+<h1>Documents</h1>
+<div class="sub s" style="margin-bottom:20px">Files for <b>Funding #3</b>, plus the ones you shared with all your products.</div>
+<div style="display:grid;grid-template-columns:0.85fr 1.15fr;gap:24px;align-items:stretch">
+<div class="dropbig"><div class="ic">⬆</div><h3>Upload a document</h3><p>Drag a file here, or choose one from your computer.</p><span class="btn">Choose file</span><small>PDF, XLSX, CSV, DOCX or images · up to 50 MB</small><div class="hint">After you pick a file we ask whether it is only for <b>Funding #3</b> or for <b>all your products</b>. You can change this later from the label next to each file.</div></div>
+<div class="card" style="overflow:visible"><h3>Your documents <span class="x">7 files</span></h3>
+<div class="doc"><span style="color:#12b48c">📄</span><span>DoE grant award — $1.2M</span><span style="position:relative"><span class="badge v" style="cursor:pointer">Funding #3 <span style="font-size:9px;opacity:.7">▾</span></span></span><span class="m">6 Sep 2026</span></div>
+<div class="doc"><span style="color:#12b48c">📄</span><span>MSA — Acme Utilities</span><span style="position:relative"><span class="badge v" style="box-shadow:0 0 0 2px #12b48c;cursor:pointer">Funding #3 <span style="font-size:9px;opacity:.7">▾</span></span><div class="pop"><div class="ph">This document applies to</div><div class="po on"><span class="rd"></span><div><b>Only Funding #3</b><span>Just for this loan application.</span></div></div><div class="po"><span class="rd"></span><div><b>All my products</b><span>Shared with your other loans, FP&amp;A, accounting.</span></div></div></div></span><span class="m">6 Sep 2026</span></div>
+<div class="doc"><span style="color:#12b48c">📄</span><span>Bank statements Jun–Aug 2026</span><span style="position:relative"><span class="badge " style="cursor:pointer">All products <span style="font-size:9px;opacity:.7">▾</span></span></span><span class="m">8 Sep 2026</span></div>
+<div class="doc"><span style="color:#12b48c">📄</span><span>Financials FY25</span><span style="position:relative"><span class="badge " style="cursor:pointer">All products <span style="font-size:9px;opacity:.7">▾</span></span></span><span class="m">9 Sep 2026</span></div>
+<div class="doc"><span style="color:#12b48c">📄</span><span>Signed NDA</span><span style="position:relative"><span class="badge v" style="cursor:pointer">Funding #3 <span style="font-size:9px;opacity:.7">▾</span></span></span><span class="m">10 Sep 2026</span></div>
+<div class="doc"><span style="color:#12b48c">📄</span><span>Certificate of incorporation</span><span style="position:relative"><span class="badge " style="cursor:pointer">All products <span style="font-size:9px;opacity:.7">▾</span></span></span><span class="m">14 Jan 2025</span></div>
+<div class="doc"><span style="color:#12b48c">📄</span><span>Term sheet — draft v1 <span class="m">(from Enduring Planet)</span></span><span style="position:relative"><span class="badge v" style="cursor:pointer">Funding #3</span></span><span class="m">—</span></div>
+<div style="margin-top:14px;font-size:12px;color:#98a2b6">Click a label to change whether a file is only for this loan or for all your products. Files sent by Enduring Planet can’t be re-labelled.</div></div>
+</div></div></div><details class="pnav"><summary>☰ Prototype screens</summary><div class="box"><a href="index.html">⌂ Start</a><h6>EP Central (staff)</h6><a class="" href="company.html">Company page</a><a class="" href="company-tasks-open.html">Company · Task Center open</a><a class="" href="company-no-tasks.html">Company · no tasks</a><a class="" href="loan.html">Funding #3 overview</a><a class="" href="fpa.html">FP&A overview</a><a class="" href="form.html">Form (Funding #3)</a><a class="" href="documents-loan.html">Documents (Funding #3)</a><a class="" href="documents.html">Documents (Company)</a><a class="" href="messages.html">Messages</a><a class="" href="email-logs.html">Email Logs</a><a class="" href="connections.html">Connections</a><a class="" href="pnl.html">P&L</a><a class="" href="transactions.html">Transactions</a><a class="" href="exports.html">Exports</a><a class="" href="fpa-model.html">FP&A model</a><a class="" href="loans.html">Loans Performance (Company)</a><a class="" href="loans-loan.html">Loans Performance (Funding #3)</a><a class="" href="loans-past.html">Past loan (Funding #2)</a><a class="" href="reports-loans.html">Reports · Loans Performances</a><a class="" href="no-access-documents.html">No access · documents</a><a class="" href="no-access-loans.html">No access · loans</a><a class="" href="request-access.html">Request client access</a><a class="" href="access-settings.html">Settings · access requests</a><h6>Client dashboard</h6><a class="" href="client-status.html">Status (Funding #3) + access request</a><a class="" href="client-loan.html">Loan tab</a><a class="" href="client-documents.html">Documents</a><a class="" href="client-documents-upload.html">Documents · upload dialog</a><a class="on" href="client-documents-relabel.html">Documents · re-label</a><a class="" href="client-repaid.html">Repaid loan (Funding #2)</a><a class="" href="client-fpa.html">FP&A · Active</a><a class="" href="client-accounting-inactive.html">Accounting · Inactive</a><a class="" href="client-accounting-active.html">Accounting · Active (variant)</a><a class="" href="client-fpa-inactive.html">FP&A · Inactive (variant)</a><a class="" href="client-new-application.html">New application, pre-filled</a></div></details><script>
+(function(){
+function fit(){document.body.style.zoom=Math.min(1,window.innerWidth/1600)}fit();addEventListener('resize',fit);
+var t=document.createElement('div');t.className='toast';document.documentElement.appendChild(t);var tt;
+function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
+function go(f){location.href=f}
+var me=location.pathname.split('/').pop()||'index.html';
+var txt=function(el){return el.textContent.replace(/\s+/g,' ').trim()};
+// ---------- EP Central
+var MAP={company:{'fourstars':'company.html','Products':'company.html','Form':'form.html','Documents':'documents.html','Messages':'messages.html','Email Logs':'email-logs.html','Connections':'connections.html','P&L':'pnl.html','Loans Performance':'loans.html','Transactions':'transactions.html','Exports':'exports.html','FP&A':'fpa-model.html'},
+ loan:{'fourstars':'loan.html','Products':'loan.html','Form':'form.html','Documents':'documents-loan.html','Loans Performance':'loans-loan.html'},
+ fpa:{'fourstars':'fpa.html','Products':'fpa.html','FP&A':'fpa-model.html'}};
+function scope(){var on=document.querySelector('.tile.on .nm');var n=on?txt(on):'Company';return /Funding/.test(n)?'loan':/FP/.test(n)?'fpa':'company'}
+function section(){var s=document.querySelector('.side .sub.on');return s?txt(s):'Products'}
+function central(el,x){
+ if(el.matches('.tile')){if(el.matches('.add'))return toast('Add product: not part of this prototype');if(el.matches('.past'))return go('loans-past.html');
+   var n=txt(el.querySelector('.nm')),sc=/Funding/.test(n)?'loan':/FP/.test(n)?'fpa':'company',sec=section();return go(MAP[sc][sec]||MAP[sc]['Products'])}
+ if(el.matches('.side .sub')){var sec=x.replace(/ ⌄$/,'');var sc=scope();var f=(MAP[sc]||{})[sec]||MAP.company[sec];return f?go(f):toast(sec+': not part of this prototype')}
+ if(el.matches('.side .it')){if(/^Reports/.test(x))return go('reports-loans.html');if(/^Companies|^fourstars/.test(x))return go('company.html');if(/^Definitions/.test(x))return go('access-settings.html');return toast(x.replace(/[⌄⌃📌]/g,'').trim()+': not part of this prototype')}
+ if(el.matches('.cbtn')){var C={'View All Forms':'form.html','View Document Hub':'documents.html','View Connections Hub':'connections.html','View Transactions':'transactions.html','View Exports':'exports.html','Open product pages':'loan.html','Open inbox':'messages.html'};return C[x]?go(C[x]):toast(x+': not part of this prototype')}
+ if(el.matches('.pr')){return go(/FP/.test(x)?'fpa.html':/Funding #3/.test(x)?'loan.html':'loans-past.html')}
+ if(el.matches('.x')&&/[⌃⌄]/.test(x)&&el.closest('h4')&&/Task Center/.test(txt(el.closest('h4'))))return go(me==='company.html'?'company-tasks-open.html':'company.html');
+ if(el.matches('span')&&/^[⌃⌄]$/.test(x)&&el.closest('h4')&&/Task Center/.test(txt(el.closest('h4'))))return go(me==='company.html'?'company-tasks-open.html':'company.html');
+ if(el.matches('.dt tr')&&!el.querySelector('th')){if(me==='loans.html'||me==='reports-loans.html')return go(/Funding #2|repaid/i.test(x)?'loans-past.html':'loans-loan.html');return}
+ if(el.matches('.btn')){
+  if(/Request client access|Request access/.test(x))return go('request-access.html');
+  if(/^Cancel/.test(x))return history.length>1?history.back():go('company.html');
+  if(/Send request/.test(x)){toast('Request sent to the client (prototype only)');return setTimeout(function(){go('company.html')},1200)}
+  if(/Go to Company documents/.test(x))return go('documents.html');
+  if(/Open in Reports/.test(x))return go('reports-loans.html');
+  return toast(x.replace(/[☐✉🗑🔑⬆⬇⟳✎]/g,'').trim()+': not part of this prototype')}
+}
+// ---------- Client
+var F3={'Status':'client-status.html','Loan':'client-loan.html','Documents':'client-documents.html'};
+function client(el,x){
+ if(el.matches('.pc')){var cur=document.querySelector('.tabs span.on');cur=cur?txt(cur).replace(/NEW/,'').trim():'Status';
+   if(/Funding #3/.test(x))return go(F3[cur]||'client-status.html');if(/Funding #4/.test(x))return go('client-new-application.html');if(/Funding #2/.test(x))return go('client-repaid.html');if(/Funding #1/.test(x))return toast('Rejected application: not part of this prototype');
+   if(/FP&A/.test(x))return go(/Inactive/.test(x)?'client-fpa-inactive.html':'client-fpa.html');if(/Bookkeeping/.test(x))return go(/Inactive/.test(x)?'client-accounting-inactive.html':'client-accounting-active.html')}
+ if(el.matches('.tabs span')){var n=x.replace(/NEW/,'').trim();var sel=document.querySelector('.pc.on .nm');sel=sel?txt(sel):'';
+   if(/Funding #3|Funding #4/.test(sel)&&F3[n])return go(F3[n]);if(/Funding #2/.test(sel)&&n==='Loan')return go('client-repaid.html');
+   if(n==='Status'){if(/FP&A/.test(sel))return go(me.indexOf('fpa-inactive')>-1?'client-fpa-inactive.html':'client-fpa.html');if(/Bookkeeping/.test(sel))return go(me.indexOf('active')>-1&&me.indexOf('inactive')<0?'client-accounting-active.html':'client-accounting-inactive.html')}
+   return toast(n+': not part of this prototype')}
+ if(el.matches('.newapp'))return go('client-new-application.html');
+ if(el.matches('.po')){toast('Label changed (prototype only)');return setTimeout(function(){go('client-documents.html')},900)}
+ if(el.matches('.opt')){[].forEach.call(document.querySelectorAll('.opt'),function(o){o.classList.remove('on')});return el.classList.add('on')}
+ if(el.matches('.badge')&&/▾/.test(x))return go(me==='client-documents-relabel.html'?'client-documents.html':'client-documents-relabel.html');
+ if(el.matches('.btn')){
+  if(/Choose file/.test(x))return go('client-documents-upload.html');
+  if(/^Upload$/.test(x)){toast('Uploaded (prototype only)');return setTimeout(function(){go('client-documents.html')},900)}
+  if(/^Cancel|^Back/.test(x))return go(me.indexOf('documents')>-1?'client-documents.html':'client-status.html');
+  if(/Approve|Decline/.test(x)){var r=document.querySelector('.req');if(r)r.style.display='none';return toast(x+'d (prototype only)'.replace('Declined','Declined').replace('Approved','Approved'))}
+  if(/Start a new application/.test(x))return go('client-new-application.html');
+  if(/Open dashboard/.test(x))return toast('Opens the FP&A dashboard');
+  return toast(x+': not part of this prototype')}
+ if(me==='client-documents-relabel.html'&&!el.closest('.pop'))return go('client-documents.html');
+}
+document.addEventListener('click',function(e){
+ var el=e.target.closest('.tile,.side .sub,.side .it,.cbtn,.pr,.btn,.dt tr,.pc,.tabs span,.newapp,.po,.opt,.badge,.x,h4 span,.seg span,.fpill');if(!el)return;
+ var x=txt(el);
+ if(el.matches('.seg span,.fpill')){[].forEach.call(el.parentNode.children,function(c){c.classList.remove('on')});return el.classList.add('on')}
+ (document.body.dataset.kind==='client'?client:central)(el,x);
+});
+})();
+</script></body></html>
