@@ -179,7 +179,7 @@ function central(el,x){
   if(DE&&/Edit loan/.test(x)&&!el.closest('.drw')){shut();DE.style.display='block';O.style.display='block';return}
   if(DL&&/New loan/.test(x)&&!el.closest('.drw')){shut();DL.style.display='block';O.style.display='block';return}
   if(DP&&/Record a payment/.test(x)&&!el.closest('.drw')){shut();DP.style.display='block';O.style.display='block';return}
-  if(el.closest('.drw')){shut();if(/Create loan|Save/.test(x)){toast(/Save changes/.test(x)?'Loan updated (prototype only, nothing is stored)':'Saved (prototype only, nothing is stored)');if(/Create loan/.test(x))setTimeout(function(){go('loans-loan-new.html')},900);if(/Save payment/.test(x)&&me==='loans-loan-new.html')setTimeout(function(){go('loans-loan.html')},900)}return}
+  if(el.closest('.drw')){shut();if(/Create loan|Save/.test(x)){toast(/Save changes/.test(x)?'Loan updated (prototype only, nothing is stored)':/Create loan/.test(x)?'Loan created. Its UID reaches the payments worksheet at the next sync (prototype only)':'Saved (prototype only, nothing is stored)');if(/Create loan/.test(x))setTimeout(function(){go('loans-loan-new.html')},900);if(/Save payment/.test(x)&&me==='loans-loan-new.html')setTimeout(function(){go('loans-loan.html')},900)}return}
   if(/Request client access|Request access/.test(x))return go('request-access.html');
   if(/^Cancel/.test(x))return history.length>1?history.back():go('company.html');
   if(/Send request/.test(x)){toast('Request sent to the client (prototype only)');return setTimeout(function(){go('company.html')},1200)}
@@ -312,6 +312,19 @@ document.addEventListener('click',function(e){
  var row=el.closest('.pr');var key=row&&/FP&A/.test(T(row))?'fpastage':(row&&!isF3(row)?null:'f3stage');if(!key)return;
  e.stopPropagation();e.preventDefault();menu(el,key==='f3stage'?ALL:ENG,get(key,key==='f3stage'?'Funded':'Active'),key)},true);
 apply();
+})();
+</script>
+<script>
+(function(){
+function toast(m){var t=document.querySelector('.toast');if(!t)return;t.textContent=m;t.classList.add('on');clearTimeout(t._u);t._u=setTimeout(function(){t.classList.remove('on')},2400)}
+function uuid(){if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){var r=Math.random()*16|0;return (c==='x'?r:(r&3|8)).toString(16)})}
+[].forEach.call(document.querySelectorAll('.uidrow .uid'),function(e){e.setAttribute('contenteditable','true');e.setAttribute('spellcheck','false');e.title='Type or paste a UID'});
+document.addEventListener('click',function(e){
+ var g=e.target.closest&&e.target.closest('.uidgen,.uidcopy,.uidrow .uid');if(!g)return;e.stopPropagation();
+ var box=g.closest('.uidrow').querySelector('.uid');
+ if(g.classList.contains('uidgen')){box.textContent=uuid();toast('New UID generated')}
+ else if(g.classList.contains('uidcopy')){var v=box.textContent.trim();try{navigator.clipboard.writeText(v)}catch(x){}toast('UID copied: '+v)}
+},true);
 })();
 </script>
 </body></html>
