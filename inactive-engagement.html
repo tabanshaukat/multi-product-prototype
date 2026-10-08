@@ -191,7 +191,7 @@ html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visi
 function fit(){document.body.style.zoom=Math.min(1,document.documentElement.clientWidth/1600)}fit();addEventListener('resize',fit);
 var t=document.createElement('div');t.className='toast';document.documentElement.appendChild(t);var tt;
 function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
-var BUILD='6ac7b749';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
+var BUILD='6ac7b8a7';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
 var me=location.pathname.split('/').pop()||'index.html';
 var txt=function(el){return el.textContent.replace(/\s+/g,' ').trim()};
 // ---------- EP Central
@@ -347,7 +347,7 @@ function apply(){
  [].forEach.call(document.querySelectorAll('.sel'),function(e){var row=e.closest('.pr');var v=row?(isF3(row)?s:/FP&A/.test(T(row))?f:null):(e.closest('.page')&&document.querySelector('.pipe')?s:null);if(v===null)return;e.textContent=v+' ▾';e.style.width='auto';e.style.minWidth='96px';e.style.maxWidth='190px';e.style.overflow='hidden';e.style.textOverflow='ellipsis';e.style.cursor='pointer';e.title=v});
  [].forEach.call(document.querySelectorAll('.pc'),function(p){var n=p.querySelector('.nm'),b=p.querySelector('.badge');if(!n||!b)return;if(T(n)==='Funding #3'){b.textContent=s;b.className='badge '+cls(s)}if(T(n)==='FP&A'){b.textContent=f;b.className='badge '+cls(f)}});
  [].forEach.call(document.querySelectorAll('.steps'),function(p){track(p,STEP[s])});
- var fd=(s==='Funded'||s==='Repaid');document.body.classList.toggle('f3funded',fd);if(!document.getElementById('f3css')){var st=document.createElement('style');st.id='f3css';st.textContent='body.f3funded .f3off{display:none!important}body:not(.f3funded) .f3on{display:none!important}body:not(.f3funded) .f3off{display:revert!important}';document.head.appendChild(st)}
+ var fd=(s==='Funded'||s==='Repaid');document.body.classList.toggle('f3funded',fd);if(!document.getElementById('f3css')){var st=document.createElement('style');st.id='f3css';st.textContent='body.f3funded .f3off{display:none!important}body.f3funded .f3on{display:revert!important}body:not(.f3funded) .f3on{display:none!important}body:not(.f3funded) .f3off{display:revert!important}';document.head.appendChild(st)}
  if(/client-status/.test(location.pathname)){var em=document.querySelector('h1 em');if(em){em.textContent=s;em.style.color=cls(s)==='g'?'#0a8c6e':cls(s)==='r'?'#e35d6a':''}var sub=document.querySelector('.main .sub');if(sub)sub.textContent=s==='Funded'?'Your loan is funded. Repayments and documents are under the Loan tab.':s==='In Review'?'We’re reviewing your application. We’ll email you updates.':'We’ll email you when this changes.'}
  [].forEach.call(document.querySelectorAll('.sub.s b, .main .sub b'),function(b){if(ALL.indexOf(T(b))>-1&&/currently/.test(T(b.parentNode)))b.textContent=s});
  [].forEach.call(document.querySelectorAll('.card .body, .card div'),function(d){if(d.children.length===0&&/^Available once funded/.test(T(d))){d.dataset.orig=d.dataset.orig||d.textContent;d.textContent=(s==='Funded'||s==='Repaid')?'Loan funded. Schedule, payments and totals for this loan are under Loans Performance.':d.dataset.orig}});
