@@ -2,14 +2,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
 <style>
 *{box-sizing:border-box}
-body{margin:0;width:1600px;height:1090px;overflow:hidden;font-family:Poppins,"Segoe UI",sans-serif;font-size:13px;color:#1f2a44;background:#f5f7fa}
+body{margin:0;width:1600px;height:1250px;overflow:hidden;font-family:Poppins,"Segoe UI",sans-serif;font-size:13px;color:#1f2a44;background:#f5f7fa}
 svg{display:block}
 .top{height:62px;background:#15cfa3;display:flex;align-items:center;padding:0 24px;color:#fff}
 .top .b{font-weight:700;font-size:19px;letter-spacing:.01em}
 .top .search{margin-left:auto;width:320px;height:38px;border-radius:8px;background:rgba(255,255,255,.28);display:flex;align-items:center;gap:8px;padding:0 14px;color:rgba(255,255,255,.9);font-size:13px}
 .top .ic{width:34px;height:34px;display:flex;align-items:center;justify-content:center;margin-left:14px;opacity:.95}
 .top .av{width:34px;height:34px;border-radius:50%;background:#fff;color:#0fb38c;font-weight:700;display:flex;align-items:center;justify-content:center;margin-left:14px;font-size:12px}
-.layout{display:grid;grid-template-columns:262px 1fr;height:1028px}
+.layout{display:grid;grid-template-columns:262px 1fr;height:1188px}
 .side{background:#fff;border-right:1px solid #e6eaf1;padding:16px 0;overflow:hidden}
 .side .it{padding:9px 24px;color:#3b4661;font-size:14px;display:flex;align-items:center;gap:12px}
 .side .it .chev{margin-left:auto;color:#98a2b6;font-size:11px}
@@ -196,8 +196,8 @@ html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visi
     <div class="card"><h4>Messages <span class="x">⌃</span></h4><div class="li"><span>Re: Q3 close · Jane Doe</span><span class="m">2h</span></div><div class="li"><span>Term sheet questions <span class="chip v" style="margin-left:4px">Funding #3</span></span><span class="m">1d</span></div><div class="li"><span>MCR August ready <span class="chip a" style="margin-left:4px">FP&amp;A</span></span><span class="m">3d</span></div><div class="cbtn">Open inbox</div></div>
   </div>
 </div>
-<div class="ov"><div class="modal" style="width:700px"><h3>Provision client access</h3><div class="sub">Ask fourstars to let another Enduring Planet team view their account. The client receives the email below and approves or declines.</div>
-<div class="g2"><div class="fld" style="grid-column:span 2"><label>To (client email)</label><div class="in" style="justify-content:space-between"><span><span style="font-weight:600">jane.doe@fourstars.com</span> <span style="color:#7d879c;font-size:12px">· Jane Doe, COO · company owner</span></span><span style="color:#98a2b6">▾</span></div><div class="small" style="margin-top:5px">Pick a user of fourstars or type another address. The request goes to this person and only they can approve it.</div></div><div class="g2"><div class="fld"><label>Team requesting access</label><div class="in">FP&amp;A ▾</div></div><div class="fld"><label>Access level</label><div class="in">View only ▾</div></div>
+<div class="ov"><div class="modal" style="width:700px;flex-shrink:0;flex-wrap:nowrap;max-height:none"><h3>Provision client access</h3><div class="sub">Ask fourstars to let another Enduring Planet team view their account. The client receives the email below and approves or declines.</div>
+<div class="g2"><div class="fld" style="grid-column:span 2"><label>To (client email)</label><div class="in" style="justify-content:space-between"><span><span style="font-weight:600">jane.doe@fourstars.com</span> <span style="color:#7d879c;font-size:12px">· Jane Doe, COO · company owner</span></span><span style="color:#98a2b6">▾</span></div><div class="small" style="margin-top:5px">Pick a user of fourstars or type another address. The request goes to this person and only they can approve it.</div></div><div class="fld"><label>Team requesting access</label><div class="in">FP&amp;A ▾</div></div><div class="fld"><label>Access level</label><div class="in">View only ▾</div></div>
 <div class="fld" style="grid-column:span 2"><label>What they need to see</label><div class="in" style="height:auto;padding:10px 12px;gap:6px;flex-wrap:wrap"><span class="chip g">Connections</span><span class="chip g">Transactions</span><span class="chip g">P&amp;L</span><span class="chip">Loan documents</span><span class="chip">Loan details</span></div></div>
 <div class="fld" style="grid-column:span 2"><label>Reason (shown to the client)</label><div class="in">Preparing the FY27 operating model for your FP&amp;A engagement</div></div></div>
 <div style="font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;margin:16px 0 8px">Email the client will receive</div>
@@ -207,7 +207,7 @@ html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visi
 function fit(){document.body.style.zoom=Math.min(1,document.documentElement.clientWidth/1600)}fit();addEventListener('resize',fit);
 var t=document.createElement('div');t.className='toast';document.documentElement.appendChild(t);var tt;
 function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
-var BUILD='6ac7c52f';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
+var BUILD='6ac7c64c';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
 var me=location.pathname.split('/').pop()||'index.html';
 var txt=function(el){return el.textContent.replace(/\s+/g,' ').trim()};
 // ---------- EP Central
