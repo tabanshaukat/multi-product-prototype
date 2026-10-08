@@ -349,7 +349,7 @@ function cls(s){return s==='Funded'||s==='Active'?'g':/Repaid|Rejected|Non US|Ch
 function track(wrap,label){var sp=[].slice.call(wrap.children),i=-1;sp.forEach(function(x,n){if(T(x)===label)i=n});sp.forEach(function(x,n){x.classList.remove('done','cur');if(i<0)return;if(n<i)x.classList.add('done');if(n===i)x.classList.add('cur')})}
 function isF3(el){return /Funding #3/.test(T(el))}
 function apply(){
- var s=get('f3stage','Term Sheet'),f=get('fpastage','Active');
+ var s=get('f3stage_v2','Term Sheet'),f=get('fpastage','Active');
  [].forEach.call(document.querySelectorAll('.tile'),function(t){var n=t.querySelector('.nm'),c=t.querySelector('.chip');if(!n||!c)return;if(T(n)==='Funding #3'){c.textContent=s;c.className='chip '+cls(s)}if(T(n)==='FP&A'){c.textContent=f;c.className='chip '+cls(f)}});
  [].forEach.call(document.querySelectorAll('.pipe'),function(p){track(p,PIPE[s])});
  [].forEach.call(document.querySelectorAll('.sel'),function(e){var row=e.closest('.pr');var v=row?(isF3(row)?s:/FP&A/.test(T(row))?f:null):(e.closest('.page')&&document.querySelector('.pipe')?s:null);if(v===null)return;e.textContent=v+' ▾';e.style.width='auto';e.style.minWidth='96px';e.style.maxWidth='190px';e.style.overflow='hidden';e.style.textOverflow='ellipsis';e.style.cursor='pointer';e.title=v});
@@ -364,7 +364,7 @@ function menu(anchor,list,cur,key){
  var m=document.createElement('div');m.id='stagemenu';m._a=anchor;var r=anchor.getBoundingClientRect(),z=parseFloat(document.body.style.zoom)||1;
  m.style.cssText='position:absolute;z-index:60;width:300px;background:#fff;border:1px solid #e6eaf1;border-radius:12px;box-shadow:0 14px 40px rgba(31,42,68,.2);padding:6px;font:500 13px Poppins,sans-serif;color:#1f2a44';
  m.style.left=Math.max(8,(r.right+window.scrollX)/z-300)+'px';m.style.top=((r.bottom+window.scrollY)/z+6)+'px';
- var h=document.createElement('div');h.textContent=key==='f3stage'?'Customer stage · Funding #3':'Customer stage · FP&A';h.style.cssText='font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;padding:8px 12px 6px';m.appendChild(h);
+ var h=document.createElement('div');h.textContent=key==='f3stage_v2'?'Customer stage · Funding #3':'Customer stage · FP&A';h.style.cssText='font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;padding:8px 12px 6px';m.appendChild(h);
  list.forEach(function(s){var d=document.createElement('div');d.style.cssText='display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;cursor:pointer'+(s===cur?';background:#eafaf4;color:#0a8c6e;font-weight:600':'');d.textContent=s;
   if(/Repaid|Rejected|Non US|Inactive|Churned/.test(s)){var t=document.createElement('span');t.textContent='closes product';t.style.cssText='margin-left:auto;font-size:10px;color:#98a2b6;font-weight:400';d.appendChild(t)}
   if(s===cur){var k=document.createElement('span');k.textContent='✓';k.style.marginLeft='auto';d.appendChild(k)}
@@ -374,8 +374,8 @@ function menu(anchor,list,cur,key){
 document.addEventListener('click',function(e){
  var el=e.target.closest&&e.target.closest('.sel');
  if(!el){var o=document.getElementById('stagemenu');if(o&&!e.target.closest('#stagemenu'))o.remove();return}
- var row=el.closest('.pr');var key=row&&/FP&A/.test(T(row))?'fpastage':(row&&!isF3(row)?null:'f3stage');if(!key)return;
- e.stopPropagation();e.preventDefault();menu(el,key==='f3stage'?ALL:ENG,get(key,key==='f3stage'?'Term Sheet':'Active'),key)},true);
+ var row=el.closest('.pr');var key=row&&/FP&A/.test(T(row))?'fpastage':(row&&!isF3(row)?null:'f3stage_v2');if(!key)return;
+ e.stopPropagation();e.preventDefault();menu(el,key==='f3stage_v2'?ALL:ENG,get(key,key==='f3stage_v2'?'Term Sheet':'Active'),key)},true);
 apply();
 })();
 </script>
