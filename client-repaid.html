@@ -294,4 +294,24 @@ document.addEventListener('click',function(e){
 },true);
 })();
 </script>
-</body></html>
+<script>
+(function(){
+function get(){try{return JSON.parse(localStorage.getItem('f4share')||'null')}catch(e){return null}}
+window.saveShare=function(v){try{localStorage.setItem('f4share',JSON.stringify(v))}catch(e){}};
+// consent dialog: remember the ticks on Share, remember "nothing" on Not now
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-go]');if(!t)return;var x=t.textContent.trim();
+ if(/^Share with Funding #4$/.test(x)){var v={qb:false,plaid:false};[].forEach.call(document.querySelectorAll('.cko.on'),function(c){if(c.dataset.k)v[c.dataset.k]=true});saveShare(v)}
+ else if(/^Not now$/.test(x))saveShare({qb:false,plaid:false});},true);
+var v=get();if(!v)return;
+var n=document.getElementById('shr-note'),qb=document.getElementById('st-qb'),pl=document.getElementById('st-plaid'),sp=document.getElementById('sub-plaid');
+function st(el,on){if(!el)return;el.textContent=on?'Shared ✓':'Not shared';el.className='st '+(on?'g':'b')}
+st(qb,v.qb);st(pl,v.plaid);if(sp)sp.textContent='last synced 30 Apr · '+(v.plaid?'shared with Funding #4':'not shared with this application');
+if(n){var any=v.qb||v.plaid,all=v.qb&&v.plaid;
+ n.innerHTML=all?'<div class="ic">✓</div><div><b>Already connected, shared with Funding #4</b>You chose to share your existing connections when you started this application. Nothing to connect again. <span class="link" data-go="cn_consent">Change</span></div>'
+  :any?'<div class="ic">✓</div><div><b>Partly shared with Funding #4</b>You shared '+(v.qb?'QuickBooks Online':'Plaid · Chase')+' but not '+(v.qb?'Plaid · Chase':'QuickBooks Online')+'. Connect it below for this application, or <span class="link" data-go="cn_consent">share it</span>.</div>'
+  :'<div class="ic" style="background:#fff1c9">!</div><div><b>Not shared with Funding #4</b>You chose not to share your existing connections when you started this application. Connect accounts for this application below, or <span class="link" data-go="cn_consent">share the existing ones</span>.</div>';
+ if(!all)n.style.background='#fff8e6'}
+var rq=document.getElementById('rv-qb'),rp=document.getElementById('rv-plaid');
+if(rq)rq.textContent='QuickBooks Online · '+(v.qb?'shared':'not shared');if(rp)rp.textContent='Plaid · Chase · '+(v.plaid?'shared':'not shared');
+})();
+</script></body></html>
