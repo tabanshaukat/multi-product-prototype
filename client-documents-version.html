@@ -110,7 +110,7 @@ body{position:relative}
 .pop .po span{font-size:12px;color:#7d879c}
 .ver{display:block;font-size:11px;color:#98a2b6;margin-top:2px}.ver u{color:#2e5fd6;text-decoration:none;cursor:pointer}
 .vh{border:1px solid #e6eaf1;border-radius:10px;padding:10px 14px;margin-top:14px;font-size:12.5px}.vh div{display:flex;gap:12px;padding:5px 0;color:#4b5772}.vh b{color:#1f2a44;min-width:34px}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:0 0 22px}.kpi{background:#fff;border:1px solid #e6eaf1;border-radius:14px;padding:18px 20px}.kpi .k{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600}.kpi .v{font-size:26px;font-weight:700;margin-top:8px}.kpi .s{font-size:12px;color:#7d879c;margin-top:3px}
+.ovkpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:0 0 22px}.ovkpi{background:#fff;border:1px solid #e6eaf1;border-radius:14px;padding:18px 20px;min-width:0}.ovkpi .ovk{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600}.ovkpi .ovv{font-size:26px;font-weight:700;margin-top:8px;color:#1f2a44}.ovkpi .ovs{font-size:12px;color:#7d879c;margin-top:3px}
 .lt{width:100%;border-collapse:collapse;font-size:14px}.lt th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#98a2b6;font-weight:600;padding:8px 10px;border-bottom:1px solid #e6eaf1}.lt td{padding:12px 10px;border-bottom:1px solid #eef2f7;vertical-align:middle}.lt td.r,.lt th.r{text-align:right}.lt td b{font-weight:600}
 .f3off{display:none}
 .drop.s{padding:12px 18px;display:flex;align-items:center;gap:12px;text-align:left}
@@ -170,7 +170,7 @@ html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visi
 function fit(){document.body.style.zoom=Math.min(1,document.documentElement.clientWidth/1600)}fit();addEventListener('resize',fit);
 var t=document.createElement('div');t.className='toast';document.documentElement.appendChild(t);var tt;
 function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
-var BUILD='6ac7ae7a';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
+var BUILD='6ac7aebe';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
 var me=location.pathname.split('/').pop()||'index.html';
 var txt=function(el){return el.textContent.replace(/\s+/g,' ').trim()};
 // ---------- EP Central
