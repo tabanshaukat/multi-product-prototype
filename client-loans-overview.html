@@ -168,7 +168,7 @@ html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visi
 function fit(){document.body.style.zoom=Math.min(1,document.documentElement.clientWidth/1600)}fit();addEventListener('resize',fit);
 var t=document.createElement('div');t.className='toast';document.documentElement.appendChild(t);var tt;
 function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
-var BUILD='6accfa7a';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
+var BUILD='6accfc13';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
 var me=location.pathname.split('/').pop()||'index.html';
 var txt=function(el){return el.textContent.replace(/\s+/g,' ').trim()};
 // ---------- EP Central
@@ -276,6 +276,7 @@ function cellsOf(tr){var c=[].map.call(tr.children,T);var m=META[c[0]];if(m)c=c.
 function has(c,re){return c.some(function(x){return re.test(x)})}
 function pass(tok,c,all){
  if(NOOP.test(tok)||SAMPLE.test(tok))return true;
+ if(/^(Funding #\d|FP&A|Past products)$/.test(tok)&&has(c,/^All products$/))return true; // company-wide documents belong to every product
  if(tok==='Past products')return has(c,/^(Funding #[12]|Bookkeeping.*)$/);
  if(tok==='In progress')return has(c,/^in_progress$/);
  if(tok==='Repaid')return has(c,/^repaid$/i);
