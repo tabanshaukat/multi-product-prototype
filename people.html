@@ -194,7 +194,7 @@ html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visi
 function fit(){document.body.style.zoom=Math.min(1,document.documentElement.clientWidth/1600)}fit();addEventListener('resize',fit);
 var t=document.createElement('div');t.className='toast';document.documentElement.appendChild(t);var tt;
 function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
-var BUILD='6accfe2a';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
+var BUILD='6accff80';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
 var me=location.pathname.split('/').pop()||'index.html';
 var txt=function(el){return el.textContent.replace(/\s+/g,' ').trim()};
 // ---------- EP Central
@@ -350,26 +350,29 @@ function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function cls(s){return s==='Funded'||s==='Active'?'g':/Repaid|Rejected|Non US|Churned/.test(s)?'r':s==='Inactive'?'':'v'}
 function track(wrap,label){var sp=[].slice.call(wrap.children),i=-1;sp.forEach(function(x,n){if(T(x)===label)i=n});sp.forEach(function(x,n){x.classList.remove('done','cur');if(i<0)return;if(n<i)x.classList.add('done');if(n===i)x.classList.add('cur')})}
 function isF3(el){return /Funding #3/.test(T(el))}
+var KEYS=[[/Funding #3/,'f3stage_v3','Funded',1],[/FP&A/,'fpastage','Active',0],[/Funding #2/,'f2stage','Repaid',1],[/Funding #1/,'f1stage','Rejected',1],[/Bookkeeping/,'bkstage','Inactive',0]];
+function keyOf(row){var t=T(row);for(var i=0;i<KEYS.length;i++)if(KEYS[i][0].test(t))return KEYS[i];return null}
 function apply(){
  var s=get('f3stage_v3','Funded'),f=get('fpastage','Active');
  [].forEach.call(document.querySelectorAll('.tile'),function(t){var n=t.querySelector('.nm'),c=t.querySelector('.chip');if(!n||!c)return;if(T(n)==='Funding #3'){c.textContent=s;c.className='chip '+cls(s)}if(T(n)==='FP&A'){c.textContent=f;c.className='chip '+cls(f)}});
  [].forEach.call(document.querySelectorAll('.pipe'),function(p){track(p,PIPE[s])});
- [].forEach.call(document.querySelectorAll('.sel'),function(e){var row=e.closest('.pr');var v=row?(isF3(row)?s:/FP&A/.test(T(row))?f:null):(e.closest('.page')&&document.querySelector('.pipe')?s:null);if(v===null)return;e.textContent=v+' ▾';e.style.width='auto';e.style.minWidth='96px';e.style.maxWidth='190px';e.style.overflow='hidden';e.style.textOverflow='ellipsis';e.style.cursor='pointer';e.title=v});
+ [].forEach.call(document.querySelectorAll('.sel'),function(e){var row=e.closest('.pr');var kk=row?keyOf(row):null;var v=row?(kk?get(kk[1],kk[2]):null):(e.closest('.page')&&document.querySelector('.pipe')?s:null);if(v===null)return;e.textContent=v+' ▾';e.style.width='auto';e.style.minWidth='96px';e.style.maxWidth='190px';e.style.overflow='hidden';e.style.textOverflow='ellipsis';e.style.cursor='pointer';e.title=v});
  [].forEach.call(document.querySelectorAll('.pc'),function(p){var n=p.querySelector('.nm'),b=p.querySelector('.badge');if(!n||!b)return;if(T(n)==='Funding #3'){b.textContent=s;b.className='badge '+cls(s)}if(T(n)==='FP&A'){b.textContent=f;b.className='badge '+cls(f)}});
  [].forEach.call(document.querySelectorAll('.steps'),function(p){track(p,STEP[s])});
+ [].forEach.call(document.querySelectorAll('.tile.past .chip'),function(c){c.textContent=get('f2stage','Repaid')+' · '+get('f1stage','Rejected')+' · '+get('bkstage','Inactive')});
  var fd=(s==='Funded'||s==='Repaid');document.body.classList.toggle('f3funded',fd);
  if(/client-status/.test(location.pathname)){var em=document.querySelector('h1 em');if(em){em.textContent=s;em.style.color=cls(s)==='g'?'#0a8c6e':cls(s)==='r'?'#e35d6a':''}var sub=document.querySelector('.main .sub');if(sub)sub.textContent=s==='Funded'?'Your loan is funded. Repayments and documents are under the Loan tab.':s==='In Review'?'We’re reviewing your application. We’ll email you updates.':'We’ll email you when this changes.'}
  [].forEach.call(document.querySelectorAll('.sub.s b, .main .sub b'),function(b){if(ALL.indexOf(T(b))>-1&&/currently/.test(T(b.parentNode)))b.textContent=s});
  [].forEach.call(document.querySelectorAll('.card .body, .card div'),function(d){if(d.children.length===0&&/^Available once funded/.test(T(d))){d.dataset.orig=d.dataset.orig||d.textContent;d.textContent=(s==='Funded'||s==='Repaid')?'Loan funded. Schedule, payments and totals for this loan are under Loans Performance.':d.dataset.orig}});
 }
-function menu(anchor,list,cur,key){
+function menu(anchor,list,cur,key,name){
  var old=document.getElementById('stagemenu');if(old){old.remove();if(old._a===anchor)return}
  var m=document.createElement('div');m.id='stagemenu';m._a=anchor;var r=anchor.getBoundingClientRect(),z=parseFloat(document.body.style.zoom)||1;
  m.style.cssText='position:absolute;z-index:60;width:300px;background:#fff;border:1px solid #e6eaf1;border-radius:12px;box-shadow:0 14px 40px rgba(31,42,68,.2);padding:6px;font:500 13px Poppins,sans-serif;color:#1f2a44';
  m.style.left=Math.max(8,(r.right+window.scrollX)/z-300)+'px';m.style.top=((r.bottom+window.scrollY)/z+6)+'px';
- var h=document.createElement('div');h.textContent=key==='f3stage_v3'?'Customer stage · Funding #3':'Customer stage · FP&A';h.style.cssText='font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;padding:8px 12px 6px';m.appendChild(h);
+ var h=document.createElement('div');h.textContent='Customer stage · '+(name||(key==='f3stage_v3'?'Funding #3':'FP&A')).replace('Bookkeeping','Bookkeeping & Accounting');h.style.cssText='font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;padding:8px 12px 6px';m.appendChild(h);
  list.forEach(function(s){var d=document.createElement('div');d.style.cssText='display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;cursor:pointer'+(s===cur?';background:#eafaf4;color:#0a8c6e;font-weight:600':'');d.textContent=s;
-  if(/Repaid|Rejected|Non US|Inactive|Churned/.test(s)){var t=document.createElement('span');t.textContent='closes product';t.style.cssText='margin-left:auto;font-size:10px;color:#98a2b6;font-weight:400';d.appendChild(t)}
+  if(/Repaid|Rejected|Non US|Inactive|Churned/.test(s)!==/Repaid|Rejected|Non US|Inactive|Churned/.test(cur)){var t=document.createElement('span');t.textContent=/Repaid|Rejected|Non US|Inactive|Churned/.test(s)?'closes product':'reopens product';t.style.cssText='margin-left:auto;font-size:10px;color:#98a2b6;font-weight:400';d.appendChild(t)}
   if(s===cur){var k=document.createElement('span');k.textContent='✓';k.style.marginLeft='auto';d.appendChild(k)}
   d.onmouseenter=function(){if(s!==cur)d.style.background='#f6f8fb'};d.onmouseleave=function(){if(s!==cur)d.style.background=''};
   d.onclick=function(ev){ev.stopPropagation();set(key,s);m.remove();apply();var t=document.querySelector('.toast');if(t){t.textContent='Stage set to “'+s+'” (saved in this browser only)';t.classList.add('on');setTimeout(function(){t.classList.remove('on')},2200)}};m.appendChild(d)});
@@ -377,8 +380,8 @@ function menu(anchor,list,cur,key){
 document.addEventListener('click',function(e){
  var el=e.target.closest&&e.target.closest('.sel');
  if(!el){var o=document.getElementById('stagemenu');if(o&&!e.target.closest('#stagemenu'))o.remove();return}
- var row=el.closest('.pr');var key=row&&/FP&A/.test(T(row))?'fpastage':(row&&!isF3(row)?null:'f3stage_v3');if(!key)return;
- e.stopPropagation();e.preventDefault();menu(el,key==='f3stage_v3'?ALL:ENG,get(key,key==='f3stage_v3'?'Funded':'Active'),key)},true);
+ var row=el.closest('.pr');var kk=row?keyOf(row):(document.querySelector('.pipe')?KEYS[0]:null);if(!kk)return;
+ e.stopPropagation();e.preventDefault();menu(el,kk[3]?ALL:ENG,get(kk[1],kk[2]),kk[1],kk[0].source.replace(/\\/g,''))},true);
 apply();
 })();
 </script>
