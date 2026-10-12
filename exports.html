@@ -78,7 +78,7 @@ svg{display:block}
 .pr{display:grid;grid-template-columns:28px 1fr auto 96px;align-items:center;gap:10px 8px;padding:9px 0;border-bottom:1px solid #eef2f7}
 .pr .pi{width:28px;height:28px;border-radius:8px;background:#eafaf4;display:flex;align-items:center;justify-content:center}
 .pr .n{font-weight:600;font-size:13px;white-space:nowrap}.pr .s{font-size:11px;color:#7d879c;white-space:nowrap}
-.pr .span{grid-column:2/5}
+.pr .span{grid-column:2/5}.pr.past .n,.pr.past .s{color:#98a2b6}.pr.past .sel{color:#7d879c}
 .pr .sl2{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;margin-right:0;white-space:nowrap;justify-self:end}
 .pr .sel{border:1px solid #d9dfe9;border-radius:6px;padding:4px 8px;font-size:11.5px;background:#f1f5f9;font-weight:600;white-space:nowrap;display:flex;justify-content:space-between;align-items:center;width:96px}
 
@@ -182,7 +182,7 @@ html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visi
 
 <div class="ph"><h3>Download Export</h3><span class="btn ghost">⟳ Export status</span></div>
 <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:18px;margin-top:0">
-<div class="sec" style="margin-top:0"><div class="exl"><div class="h"><span class="chip b">Company</span> shared data</div><a>Full Accounting Export <span class="m">asks: Investing / Fractional CFO</span></a><a>Export Transactions CSV <span class="m">asks tree</span></a><a>Export Full Bank Assets CSV <span class="m">asks tree</span></a><div class="h" style="margin-top:16px"><span class="chip v">Funding #3</span> loan exports · Investing tree</div><a>Generate Term Sheet <span class="m">→ …/fourstars/Funding #3</span></a><a>Asset report <span class="m">→ …/fourstars/Funding #3</span></a><div class="h" style="margin-top:16px"><span class="chip a">FP&amp;A</span> engagement exports · Fractional CFO tree</div><a>Export P&amp;L</a><a>Download MCR</a><div style="margin-top:14px"><span class="btn" style="color:#98a2b6">Request new Plaid Report</span></div></div></div>
+<div class="sec" style="margin-top:0"><div class="exl"><div class="h"><span class="chip b">Company</span> shared data</div><a>Full Accounting Export <span class="m">asks: Investing / Fractional CFO</span></a><a>Export Transactions CSV <span class="m">asks tree</span></a><a>Export Full Bank Assets CSV <span class="m">asks tree</span></a><a>Asset report <span class="m">asks tree</span></a><a>Export P&amp;L <span class="m">asks tree</span></a><div class="h" style="margin-top:16px"><span class="chip v">Funding #3</span> loan exports · Investing tree</div><a>Generate Term Sheet <span class="m">→ …/fourstars/Funding #3</span></a><div class="h" style="margin-top:16px"><span class="chip a">FP&amp;A</span> engagement exports · Fractional CFO tree</div><a>Download MCR</a><div style="margin-top:14px"><span class="btn" style="color:#98a2b6">Request new Plaid Report</span></div></div></div>
 <div class="sec" style="margin-top:0"><h4>Target Destination<span class="x">⌃</span></h4>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px"><div><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><b>Fractional CFO</b><span class="chip o">Default</span><span class="small" style="margin-left:auto;color:#12b48c;font-weight:600">CHANGE FOLDER</span></div><div class="tree"><div style="--d:0">🔒 Enduring Planet - All Company Access</div><div style="--d:1">📁 Product</div><div style="--d:2">📁 Shared Drive</div><div style="--d:3">📁 Fractional CFO</div><div style="--d:4">📁 2. Customers</div><div style="--d:5">📁 fourstars</div><div style="--d:6" class="f">📁 Exports</div></div></div>
 <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><b>Investing</b><span class="small" style="color:#12b48c;font-weight:600">Make default</span><span class="small" style="margin-left:auto;color:#12b48c;font-weight:600">CHANGE FOLDER</span></div><div class="tree"><div style="--d:0">🔒 Enduring Planet - All Company Access</div><div style="--d:1">📁 Product</div><div style="--d:2">📁 Shared Drive</div><div style="--d:3">📁 Investing</div><div style="--d:4">📁 1. Pipeline</div><div style="--d:5">📁 Climate Grant Advance</div><div style="--d:6">📁 fourstars</div><div style="--d:7" class="f">📁 Funding #3</div><div style="--d:7">📁 Funding #2</div></div></div></div>
@@ -191,7 +191,7 @@ html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visi
 function fit(){document.body.style.zoom=Math.min(1,document.documentElement.clientWidth/1600)}fit();addEventListener('resize',fit);
 var t=document.createElement('div');t.className='toast';document.documentElement.appendChild(t);var tt;
 function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
-var BUILD='6acd0865';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
+var BUILD='6acd091e';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
 var me=location.pathname.split('/').pop()||'index.html';
 var txt=function(el){return el.textContent.replace(/\s+/g,' ').trim()};
 // ---------- EP Central
