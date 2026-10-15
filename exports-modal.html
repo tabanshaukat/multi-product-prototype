@@ -1,0 +1,477 @@
+<!doctype html><html data-theme="light"><head><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Exports · Full Accounting Export dialog · prototype</title><meta charset="utf-8"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"><style>
+*{box-sizing:border-box}
+body{margin:0;width:1600px;height:1090px;overflow:hidden;font-family:Poppins,"Segoe UI",sans-serif;font-size:13px;color:#1f2a44;background:#f5f7fa}
+svg{display:block}
+.top{height:62px;background:#15cfa3;display:flex;align-items:center;padding:0 24px;color:#fff}
+.top .b{font-weight:700;font-size:19px;letter-spacing:.01em}
+.top .search{margin-left:auto;width:320px;height:38px;border-radius:8px;background:rgba(255,255,255,.28);display:flex;align-items:center;gap:8px;padding:0 14px;color:rgba(255,255,255,.9);font-size:13px}
+.top .ic{width:34px;height:34px;display:flex;align-items:center;justify-content:center;margin-left:14px;opacity:.95}
+.top .av{width:34px;height:34px;border-radius:50%;background:#fff;color:#0fb38c;font-weight:700;display:flex;align-items:center;justify-content:center;margin-left:14px;font-size:12px}
+.layout{display:grid;grid-template-columns:262px 1fr;height:1028px}
+.side{background:#fff;border-right:1px solid #e6eaf1;padding:16px 0;overflow:hidden}
+.side .it{padding:9px 24px;color:#3b4661;font-size:14px;display:flex;align-items:center;gap:12px}
+.side .it .chev{margin-left:auto;color:#98a2b6;font-size:11px}
+.side .it.on{color:#12b48c;font-weight:600;background:#eafaf4}
+.side .sub{padding:7px 24px 7px 60px;color:#6b7690;font-size:13px}
+.side .sub.on{color:#12b48c;font-weight:600}
+.side .grp{padding:10px 24px 4px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#98a2b6;font-weight:600}
+.main{padding:26px 34px 34px;overflow:hidden}
+.crumb{color:#4b5772;font-size:15px;margin-bottom:16px}
+.crumb span{color:#98a2b6;margin:0 6px}
+.hdr{background:#fff;border:1px solid #e6eaf1;border-radius:12px;padding:24px 28px 0;overflow:hidden;margin-bottom:0;box-shadow:0 1px 2px rgba(31,42,68,.04)}
+.hdr .row{display:flex;gap:20px;align-items:center}
+.hdr .logo{width:64px;height:64px;border-radius:14px;background:#eafaf4;display:flex;align-items:center;justify-content:center}
+.hdr .name{font-size:32px;font-weight:700;line-height:1.05;color:#1f2a44}
+.hdr .id{color:#7d879c;font-size:12.5px;margin-top:6px;display:flex;gap:12px;align-items:center;white-space:nowrap}
+.hdr .right{margin-left:auto;display:flex;gap:16px;align-items:flex-end;flex-shrink:0}
+.hdr .lbl{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#98a2b6;font-weight:600;margin-bottom:8px}
+.hdr .staff{display:flex;align-items:center;gap:6px}
+.hdr .staff span{width:30px;height:30px;border-radius:50%;background:#e4faf4;color:#0a8c6e;font-weight:600;font-size:11px;display:flex;align-items:center;justify-content:center}
+.hdr .staff .add{background:#fff;border:1px dashed #cfd6e0;color:#98a2b6;font-size:14px}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;border:1px solid #cfd6e0;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;color:#1f2a44;background:#fff}
+.btn.danger{border-color:#f3c0c5;color:#e35d6a}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;line-height:1.3;border-radius:999px;background:#eef1f6;color:#4b5772}
+.chip.g{background:#e4faf4;color:#0a8c6e}.chip.a{background:#fff5d6;color:#8a6400}.chip.r{background:#fde8ea;color:#c9364a}.chip.b{background:#e6f0ff;color:#2e5fd6}.chip.v{background:#f0e8ff;color:#6b3fd6}
+.chip.o{background:#fff;border:1px solid #12b48c;color:#12b48c}
+/* product strip */
+.stripwrap{margin-top:16px;border-top:1px solid #eef2f7;padding:12px 0 14px;display:flex;align-items:center;gap:14px}
+.stripwrap .cap{flex-shrink:0}
+.stripwrap .cap b{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#98a2b6;font-weight:600}
+.strip{display:flex;gap:8px;align-items:center;flex-wrap:nowrap;min-width:0}
+.tile{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border:1.5px solid #e6eaf1;border-radius:999px;background:#fff;white-space:nowrap}
+.tile .t1{display:contents}
+.tile .pi{display:none}
+.tile .pi svg{width:14px;height:14px}
+.tile .nm{font-weight:600;font-size:13px;color:#1f2a44}
+.tile .bu{display:none}
+.tile .chip{font-size:9.5px;padding:3px 8px;letter-spacing:.04em}
+.tile .sl{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;margin-left:4px;padding-left:10px;border-left:1px solid #e6eaf1}
+.tile.on{border:2px solid #12b48c;background:#f3fcf9;box-shadow:0 2px 8px rgba(18,180,140,.18);padding:0 13px}
+.tile.on .nm{color:#0a8c6e}
+.tile.past{background:#fafbfd;border-style:dashed}
+.tile.past .nm{color:#98a2b6}
+.tile.past .pi{background:#f1f4f8}
+.tile.add{width:40px;padding:0;justify-content:center;border:1.5px dashed #b9e9db;background:#f6fdfa;color:#12b48c;font-weight:600;font-size:18px;border-radius:50%}
+.tile.co .pi{background:#12b48c}
+/* content */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:24px}
+.card{justify-content:flex-start;background:#fff;border:1px solid #e6eaf1;border-radius:12px;padding:20px 22px;min-height:220px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(31,42,68,.04)}
+.card h4{margin:0 0 16px;font-size:15px;font-weight:600;display:flex;gap:10px;align-items:center;line-height:1}
+.card .body{margin-bottom:18px}
+.card h4 .x{margin-left:auto;color:#98a2b6;font-weight:400;font-size:12px}
+.card .cbtn{margin-top:auto;padding-top:0;border:1px solid #cfd6e0;border-radius:8px;padding:10px;text-align:center;font-weight:600;font-size:13px;color:#1f2a44}
+.li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #eef2f7;font-size:12.5px;color:#3b4661;align-items:center}
+.li:last-of-type{border-bottom:none}
+.li .m{color:#98a2b6;font-size:11.5px}
+.li b{color:#1f2a44;font-weight:600}
+.prog{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;display:flex;justify-content:space-between}
+.bar{height:6px;background:#eef1f6;border-radius:3px;overflow:hidden;margin:8px 0 10px}.bar i{display:block;height:100%;background:#12b48c;width:43%}
+.chk{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#3b4661;padding:4px 0}
+.chk i{width:13px;height:13px;border-radius:50%;border:1.5px solid #cfd6e0;display:inline-block}
+.chk.d{color:#98a2b6;text-decoration:line-through}.chk.d i{border-color:#12b48c;background:#12b48c}
+.conn{display:grid;grid-template-columns:auto auto 1fr;gap:8px;align-items:center;padding:7px 0;font-size:12px;border-bottom:1px solid #eef2f7}.conn:last-of-type{border-bottom:none}
+.conn .nm{background:#eef1f6;color:#1f2a44;padding:3px 9px;border-radius:6px;font-weight:600;font-size:11px;white-space:nowrap}
+.conn .m{color:#98a2b6;font-size:11.5px;white-space:nowrap}
+.tx{display:grid;grid-template-columns:auto auto 1fr;gap:9px 12px;font-size:12px;color:#7d879c;align-items:center;padding:5px 0}
+.tx b{color:#1f2a44;font-weight:600;font-size:12.5px;text-align:right}
+.tx .d{color:#7d879c}.tx .m{color:#98a2b6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pr{display:grid;grid-template-columns:28px 1fr auto 96px;align-items:center;gap:10px 8px;padding:9px 0;border-bottom:1px solid #eef2f7}
+.pr .pi{width:28px;height:28px;border-radius:8px;background:#eafaf4;display:flex;align-items:center;justify-content:center}
+.pr .n{font-weight:600;font-size:13px;white-space:nowrap}.pr .s{font-size:11px;color:#7d879c;white-space:nowrap}
+.pr .span{grid-column:2/5}.pr.past .n,.pr.past .s{color:#98a2b6}.pr.past .sel{color:#7d879c}
+.pr .sl2{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;margin-right:0;white-space:nowrap;justify-self:end}
+.pr .sel{border:1px solid #d9dfe9;border-radius:6px;padding:4px 8px;font-size:11.5px;background:#f1f5f9;font-weight:600;white-space:nowrap;display:flex;justify-content:space-between;align-items:center;width:96px}
+
+.side .sub.on{color:#12b48c;font-weight:600;background:#eafaf4;border-radius:6px 0 0 6px;margin-left:44px;padding-left:16px}
+.side .sub.dim{color:#aab3c4}
+body:not(.f3funded) .f3on{display:none}body.f3funded .f3off{display:none}
+.pipe{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 4px}
+.pipe span{font-size:10px;padding:4px 9px;border-radius:999px;background:#eef1f6;color:#7d879c;font-weight:600;white-space:nowrap}
+.pipe span.done{background:#e4faf4;color:#0a8c6e}.pipe span.cur{background:#12b48c;color:#fff}.pipe .arr{background:none;color:#cfd6e0;padding:0}
+.kv{display:grid;grid-template-columns:1fr auto;gap:9px 12px;font-size:12.5px;color:#4b5772}
+.kv b{color:#1f2a44;font-weight:600;text-align:right;white-space:nowrap}
+.doc{display:grid;grid-template-columns:18px 1fr auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid #eef2f7;font-size:12.5px;color:#3b4661}
+.doc:last-of-type{border-bottom:none}.doc .m{color:#98a2b6;font-size:11px;white-space:nowrap}
+.cbtn.p{background:#12b48c;border-color:#12b48c;color:#fff}
+.avs{display:flex}.avs span{width:30px;height:30px;border-radius:50%;background:#e4faf4;color:#0a8c6e;font-weight:600;font-size:11px;display:flex;align-items:center;justify-content:center;border:2px solid #fff;margin-left:-8px}.avs span:first-child{margin-left:0}
+.tog{width:36px;height:20px;border-radius:10px;background:#12b48c;position:relative;display:inline-block}.tog::after{content:"";position:absolute;right:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff}
+.note{font-size:11.5px;color:#7d879c;line-height:1.5}
+.tbl{width:100%;border-collapse:collapse;font-size:12px}.tbl th{text-align:left;color:#98a2b6;font-weight:600;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:6px 0;border-bottom:1px solid #eef2f7}.tbl td{padding:7px 0;border-bottom:1px solid #f3f5f9;color:#3b4661}.tbl td.r,.tbl th.r{text-align:right}.tbl td.r{font-weight:600;color:#1f2a44}
+/* documents page */
+.page{background:#fff;border:1px solid #e6eaf1;border-radius:12px;padding:22px 24px;margin-top:22px;box-shadow:0 1px 2px rgba(31,42,68,.04)}
+.page .ttl{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.page .ttl h3{margin:0;font-size:18px;font-weight:700}
+.seg{display:inline-flex;border:1px solid #e6eaf1;border-radius:8px;overflow:hidden;background:#f8fafc}
+.seg span{padding:7px 14px;font-size:12.5px;font-weight:500;color:#4b5772;border-right:1px solid #e6eaf1}
+.seg span:last-child{border-right:none}.seg span.on{background:#fff;color:#0a8c6e;font-weight:600;box-shadow:inset 0 -2px 0 #12b48c}
+.toolbar{display:flex;align-items:center;gap:12px;margin:6px 0 16px}
+.toolbar .srch{flex:1;max-width:340px;height:36px;border:1px solid #e6eaf1;border-radius:8px;display:flex;align-items:center;gap:8px;padding:0 12px;color:#98a2b6;font-size:12.5px}
+.toolbar .path{font-size:11.5px;color:#7d879c;margin-left:auto;display:flex;align-items:center;gap:6px}
+.dt{width:100%;border-collapse:collapse;font-size:12.5px}
+.dt th{text-align:left;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#98a2b6;font-weight:600;padding:8px 10px;border-bottom:1px solid #e6eaf1}
+.dt td{padding:11px 10px;border-bottom:1px solid #eef2f7;color:#3b4661;vertical-align:middle}
+.dt td.n{font-weight:600;color:#1f2a44}.dt td.m{color:#98a2b6}
+.dt tr.grp td{background:#f8fafc;color:#7d879c;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:8px 10px}
+.dt .ic{display:inline-flex;width:26px;height:26px;border-radius:7px;background:#eafaf4;align-items:center;justify-content:center;margin-right:10px;vertical-align:middle}
+.dt td .act{color:#98a2b6;font-size:14px;letter-spacing:.2em}
+.dt tr.co td{opacity:.75}
+ body{height:1060px} .layout{height:998px}
+.ph{display:flex;align-items:center;gap:12px;margin:22px 0 14px}
+.ph h3{margin:0;font-size:20px;font-weight:700}
+.ph .sp{margin-left:auto;display:flex;gap:10px;align-items:center}
+.btn.p{background:#12b48c;border-color:#12b48c;color:#fff}
+.btn.ghost{color:#12b48c;border-color:#b9e9db}
+.fld{display:grid;gap:6px}
+.fld label{font-size:11px;color:#7d879c}
+.fld .in{height:38px;border:1px solid #e6eaf1;border-radius:8px;background:#fff;display:flex;align-items:center;padding:0 12px;color:#1f2a44;font-size:13px}
+.fld .in.ro{background:#f6f8fb;color:#7d879c}
+.fld .in .lk{margin-left:auto;font-size:11px;color:#98a2b6}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 18px}
+.sec{background:#fff;border:1px solid #e6eaf1;border-radius:12px;padding:20px 22px;margin-top:16px}
+.sec h4{margin:0 0 14px;font-size:15px;font-weight:600;display:flex;align-items:center;gap:10px}
+.sec h4 .x{margin-left:auto;color:#98a2b6;font-weight:400;font-size:12px}
+.sec.ro{background:#fbfcfe}
+.filters{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.filters .lb{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;margin-right:4px}
+.fpill{padding:6px 12px;border-radius:999px;border:1px solid #e6eaf1;font-size:12px;font-weight:500;color:#4b5772;background:#fff}
+.fpill.on{border-color:#12b48c;background:#f3fcf9;color:#0a8c6e;font-weight:600}
+.tabs2{display:flex;gap:26px;border-bottom:1px solid #e6eaf1;margin:4px 0 16px}
+.tabs2 span{padding:10px 0;font-size:13px;color:#4b5772}
+.tabs2 span.on{color:#0a8c6e;font-weight:600;box-shadow:inset 0 -2px 0 #12b48c}
+.tree{font-size:12.5px;color:#3b4661;line-height:1.9}
+.tree div{padding-left:calc(var(--d)*18px)}
+.tree .f{color:#12b48c;font-weight:600}
+.exl{display:grid;gap:6px}
+.exl .h{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;margin:10px 0 4px;display:flex;gap:8px;align-items:center}
+.exl a{color:#12b48c;font-weight:600;font-size:14px;padding:6px 0;display:flex;align-items:center;gap:8px}
+.exl a .m{font-size:11px;color:#98a2b6;font-weight:400}
+.kpi{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:16px}
+.kpi div{border:1px solid #e6eaf1;border-radius:10px;padding:12px 14px;background:#fff}
+.kpi b{display:block;font-size:18px;font-weight:700;color:#1f2a44}
+.kpi span{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#98a2b6;font-weight:600}
+.cta{display:inline-flex;align-items:center;gap:8px;border-radius:8px;padding:9px 16px;font-weight:600;font-size:13px;background:#12b48c;color:#fff}
+.small{font-size:11.5px;color:#7d879c}
+
+body{position:relative}
+.ov{position:absolute;inset:0;background:rgba(31,42,68,.45);display:flex;align-items:center;justify-content:center;z-index:20}
+.modal{width:620px;background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(31,42,68,.35);padding:26px 28px}
+.modal h3{margin:0 0 4px;font-size:19px;font-weight:700}
+.modal .sub{font-size:12.5px;color:#7d879c;margin-bottom:18px}
+.opt{display:flex;gap:12px;align-items:flex-start;border:1.5px solid #e6eaf1;border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.opt.on{border-color:#12b48c;background:#f3fcf9}
+.opt .rd{width:18px;height:18px;border-radius:50%;border:2px solid #cfd6e0;flex-shrink:0;margin-top:2px}
+.opt.on .rd{border-color:#12b48c;box-shadow:inset 0 0 0 4px #fff;background:#12b48c}
+.opt b{display:block;font-size:14px;font-weight:600}
+.opt span{font-size:12px;color:#7d879c}
+.modal .ft{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+.filebox{display:flex;align-items:center;gap:10px;border:1px solid #e6eaf1;border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:13px}
+.filebox .m{margin-left:auto;color:#98a2b6;font-size:11.5px}
+.lockbox{background:#fff;border:1px solid #e6eaf1;border-radius:12px;padding:56px 24px;text-align:center;margin-top:20px}
+.lockbox .ic{width:56px;height:56px;border-radius:50%;background:#fff5d6;display:inline-flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:14px}
+.lockbox h4{margin:0 0 6px;font-size:18px;font-weight:700}
+.lockbox p{margin:0 auto 18px;max-width:520px;color:#4b5772;font-size:13.5px;line-height:1.55}
+.mail{border:1px solid #e6eaf1;border-radius:10px;background:#fbfcfe;padding:14px 16px;font-size:12.5px;color:#3b4661;line-height:1.55}
+.mail .hd{font-size:11px;color:#98a2b6;margin-bottom:8px}
+.mail b{color:#1f2a44}
+.tg{width:36px;height:20px;border-radius:10px;background:#cfd6e0;position:relative;display:inline-block}.tg::after{content:"";position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff}
+.tg.on{background:#12b48c}.tg.on::after{left:auto;right:2px}
+.dt td.c,.dt th.c{text-align:center}
+.warnrow td{background:#fffaf0}
+</style><style>.layout{grid-template-columns:262px minmax(0,1fr)!important}.main{min-width:0}
+.drw{position:fixed!important;overflow-y:auto!important;padding-bottom:90px!important}.drw .dft{position:sticky!important;bottom:-90px;margin:20px -30px -90px}
+html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visible!important;height:auto!important;min-height:100vh;position:relative;transform-origin:top left}.layout{height:auto!important;min-height:calc(100vh - 76px)}.main{overflow:visible!important}.ov,.ovl{position:fixed!important}
+.tile,.sub,.it,.btn,.cbtn,.pr,.pc,.tabs span,.newapp,.dt tr,.badge,.po,.x,.opt,.pnav a,.seg span,.fpill,.chip.o{cursor:pointer}
+.pnav{position:fixed;left:16px;bottom:16px;z-index:999;font:500 13px/1.3 -apple-system,Segoe UI,sans-serif}
+.pnav summary{list-style:none;background:#1f2a44;color:#fff;padding:9px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25);cursor:pointer}
+.pnav summary::-webkit-details-marker{display:none}
+.pnav .box{position:absolute;bottom:44px;left:0;background:#fff;border:1px solid #dfe5ee;border-radius:12px;box-shadow:0 14px 40px rgba(31,42,68,.2);padding:6px;width:330px;max-height:70vh;overflow:auto}
+.pnav h6{margin:8px 12px 4px;font:600 10px/1 -apple-system,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6}
+.pnav a{display:block;padding:7px 12px;border-radius:8px;color:#1f2a44;text-decoration:none}.pnav a:hover,.pnav a.on{background:#eafaf4;color:#0a8c6e}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#1f2a44;color:#fff;padding:11px 18px;border-radius:10px;font:500 13px -apple-system,sans-serif;z-index:1000;opacity:0;transition:opacity .2s;pointer-events:none}.toast.on{opacity:1}
+</style></head><body data-kind="central"><div class="top"><span class="b">EP Central</span><div class="search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Search…</div>
+<div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+<div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0v5l2 3H4l2-3z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></div>
+<div class="av">TS</div></div>
+<div class="layout"><div class="side"><div class="it"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7690" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>Personal Dashboard</div><div class="it"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7690" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12l3 3 5-6"/></svg>Tasks<span class="chev">⌄</span></div><div class="it on"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#12b48c" stroke-width="2"><path d="M3 21V7l7-4v18M10 21V11l11-3v13"/></svg>Companies<span class="chev">⌃</span></div><div class="sub" style="color:#12b48c;font-weight:600">fourstars</div><div class="sub ">Form</div><div class="sub ">Documents</div><div class="sub ">Messages</div><div class="sub ">Email Logs</div><div class="sub ">Connections</div><div class="sub ">P&amp;L</div><div class="sub ">Loans Performance</div><div class="sub ">Transactions</div><div class="sub on">Exports</div><div class="sub ">FP&amp;A</div><div class="sub ">Products</div><div class="sub ">People</div><div class="it" style="margin-top:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7690" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0M17 11a3 3 0 1 0 0-6M22 20a6 6 0 0 0-6-6"/></svg>Users</div><div class="it"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7690" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Reports<span class="chev">⌄</span></div><div class="it"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7690" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12l3 3 5-6"/></svg>Messages<span class="chev">⌄</span></div><div class="it"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7690" stroke-width="2"><path d="M4 5h16v14H4zM4 10h16"/></svg>Definitions<span class="chev">⌄</span></div><div class="grp" style="padding-left:24px;margin-top:8px">Pinned companies</div><div class="it" style="padding-left:24px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7690" stroke-width="2"><path d="M3 21V7l7-4v18M10 21V11l11-3v13"/></svg>fourstars<span class="chev">📌</span></div></div><div class="main"><div class="crumb">company <span>/</span> companies <span>/</span> 32 <span>/</span> financials <span>/</span> <b>exports</b></div><div class="hdr">
+    <div class="row">
+      <div class="logo"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#12b48c" stroke-width="2"><path d="M3 21V7l7-4v18M10 21V11l11-3v13"/></svg></div>
+      <div><div class="name">fourstars</div><div class="id">ID: 32 <span>·</span> hello@fourstars.example <span class="chip g">4 products</span><span class="chip b">2 active</span></div></div>
+      <div class="right">
+        <div><div class="lbl">Staff access</div><div class="staff"><span>TA</span><span>AK</span><span class="add">+</span></div></div>
+        <div><div class="lbl">Daily backfill</div><span class="btn">☐ &nbsp;Run daily backfill job</span></div>
+        <span class="btn ghost" style="color:#12b48c;border-color:#b9e9db">✉ View Emails</span><span class="btn danger">🗑 Delete</span>
+      </div>
+    </div>
+    <div class="stripwrap"><div class="cap"><b>Viewing</b></div><div class="strip"><div class="tile co on"><div class="pi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 21V7l7-4v18M10 21V11l11-3v13"/></svg></div><span class="nm">Company</span><span class="chip o">Shared</span></div><div class="tile "><div class="pi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#12b48c" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M3 11h18M8 7V4h8v3"/></svg></div><span class="nm">Funding #3</span><span class="chip v">In Review</span></div><div class="tile "><div class="pi" style="background:#fff5d6"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c99400" stroke-width="2"><path d="M4 19V9M10 19V5M16 19v-8M22 19H2"/></svg></div><span class="nm">FP&amp;A</span><span class="chip g">Active</span></div><div class="tile past"><div class="pi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98a2b6" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M3 11h18M8 7V4h8v3"/></svg></div><span class="nm">Past · 3</span><span class="chip">Repaid · Rejected · Inactive</span><span style="color:#98a2b6;font-size:11px;margin-left:2px">▾</span></div><div class="tile add" title="Add product">+</div></div><span class="btn ghost" style="margin-left:auto;color:#12b48c;border-color:#b9e9db;flex-shrink:0">🔑 Provision client access</span></div></div>
+
+
+<div class="ph"><h3>Download Export</h3><span class="btn ghost">⟳ Export status</span></div>
+<div style="display:grid;grid-template-columns:1fr 1.4fr;gap:18px;margin-top:0">
+<div class="sec" style="margin-top:0"><div class="exl"><div class="h"><span class="chip b">Company</span> shared data</div><a>Full Accounting Export <span class="m">asks: Investing / Fractional CFO</span></a><a>Export Transactions CSV <span class="m">asks tree</span></a><a>Export Full Bank Assets CSV <span class="m">asks tree</span></a><a>Asset report <span class="m">asks tree</span></a><a>Export P&amp;L <span class="m">asks tree</span></a><div class="h" style="margin-top:16px"><span class="chip v">Funding #3</span> loan exports · Investing tree</div><a>Generate Term Sheet <span class="m">→ …/fourstars/Funding #3</span></a><div class="h" style="margin-top:16px"><span class="chip a">FP&amp;A</span> engagement exports · Fractional CFO tree</div><a>Download MCR</a><div style="margin-top:14px"><span class="btn" style="color:#98a2b6">Request new Plaid Report</span></div></div></div>
+<div class="sec" style="margin-top:0"><h4>Target Destination<span class="x">⌃</span></h4>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px"><div><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><b>Fractional CFO</b><span class="chip o">Default</span><span class="small" style="margin-left:auto;color:#12b48c;font-weight:600">CHANGE FOLDER</span></div><div class="tree"><div style="--d:0">🔒 Enduring Planet - All Company Access</div><div style="--d:1">📁 Product</div><div style="--d:2">📁 Shared Drive</div><div style="--d:3">📁 Fractional CFO</div><div style="--d:4">📁 2. Customers</div><div style="--d:5">📁 fourstars</div><div style="--d:6" class="f">📁 Exports</div></div></div>
+<div><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><b>Investing</b><span class="small" style="color:#12b48c;font-weight:600">Make default</span><span class="small" style="margin-left:auto;color:#12b48c;font-weight:600">CHANGE FOLDER</span></div><div class="tree"><div style="--d:0">🔒 Enduring Planet - All Company Access</div><div style="--d:1">📁 Product</div><div style="--d:2">📁 Shared Drive</div><div style="--d:3">📁 Investing</div><div style="--d:4">📁 1. Pipeline</div><div style="--d:5">📁 Climate Grant Advance</div><div style="--d:6">📁 fourstars</div><div style="--d:7" class="f">📁 Funding #3</div><div style="--d:7">📁 Funding #2</div></div></div></div>
+<div class="small" style="margin-top:14px">Loan exports get a sub-folder per funding row inside the company's Investing folder, so two applications never overwrite each other's term sheet.</div></div></div></div></div><div class="ov"><div class="modal" style="width:640px"><style>.xbox{border:1px solid #e6eaf1;border-radius:10px;padding:14px 16px;margin-bottom:12px}.xbox h5{margin:0 0 10px;font-size:13.5px;font-weight:600}.xrow{display:flex;align-items:flex-start;gap:12px;padding:8px 0;font-size:13.5px}.xrow .m{font-size:11.5px;color:#98a2b6}.xck{width:16px;height:16px;border:2px solid #cfd6e0;border-radius:4px;flex-shrink:0;margin-top:2px;cursor:pointer;box-sizing:border-box}.xck.on{background:#12b48c url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/11px no-repeat;border-color:#12b48c}.xrd{width:16px;height:16px;border-radius:50%;border:2px solid #cfd6e0;flex-shrink:0;margin-top:2px;cursor:pointer;box-sizing:border-box}.xrd.on{border-color:#12b48c;box-shadow:inset 0 0 0 3px #fff;background:#12b48c}.xpath{font-size:11.5px;color:#2e5fd6;line-height:1.5}.xchg{margin-left:auto;font-size:12px;color:#12b48c;font-weight:600;white-space:nowrap;cursor:pointer}.xbtn{display:block;text-align:center;border:1px solid #cfd6e0;border-radius:8px;padding:11px;font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1f2a44;cursor:pointer}</style><h3 style="margin-bottom:14px">Full Accounting Export</h3>
+<div class="xbox"><h5>Select accounting connections to export:</h5>
+<div class="xrow" style="padding-top:0"><span class="xck on" data-all="1"></span><span>Select All</span></div>
+<div class="xrow"><span class="xck on"></span><div><div>QuickBooks Online Sandbox</div><div class="m">9d14cea7-fba5-ff39-4fdb-76631768078f · Last sync: 4/30/2026, 10:17:03 PM</div></div><span class="chip g" style="margin-left:auto">Linked</span></div>
+<div class="xrow"><span class="xck on"></span><div><div>QuickBooks Online Sandbox</div><div class="m">b1326b2d-c78b-1744-a7f1-f1e007870c1e · Last sync: 4/24/2026, 2:46:44 AM</div></div><span class="chip g" style="margin-left:auto">Linked</span></div></div>
+<div class="xbox"><h5>Where should this export go?</h5><div class="small" style="margin:-4px 0 8px">This company has products with both teams, so it has a folder in each Google Drive tree.</div>
+<div class="xrow" data-grp="tree"><span class="xrd on"></span><div><div>Fractional CFO <span class="m">(default)</span></div><div class="xpath">📁 Enduring Planet - All Company Access / Product / Shared Drive / Fractional CFO / 2. Customers / fourstars / Exports</div></div><span class="xchg">Change</span></div>
+<div class="xrow" data-grp="tree"><span class="xrd"></span><div><div>Investing</div><div class="xpath">📁 Enduring Planet - All Company Access / Product / Shared Drive / Investing / 1. Pipeline / Climate Grant Advance / fourstars / Exports</div></div><span class="xchg">Change</span></div></div>
+<div class="small" style="margin:0 0 12px">Running a fresh sync before exporting helps ensure your export includes the most recent data. If you skip sync, your export may contain older data.</div>
+<div class="xbox"><h5>Do you want to sync the selected connections before export?</h5><div style="display:flex;gap:24px"><span class="xrow" data-grp="sync" style="padding:0"><span class="xrd"></span>Yes</span><span class="xrow" data-grp="sync" style="padding:0"><span class="xrd on"></span>No</span></div></div>
+<span class="xbtn btn">Export with current data</span>
+<div class="small" style="text-align:center;margin:12px 0 10px">Export(s) create a Google Sheet in the company’s <b>Fractional CFO</b> Exports folder. Data may take a few minutes to finish writing after the export starts.</div>
+<div style="text-align:center"><span class="btn ghost">Cancel</span></div></div></div><details class="pnav"><summary>☰ Prototype screens</summary><div class="box"><a href="index.html">⌂ Start</a><h6>EP Central (staff)</h6><a class="" href="company.html">Company page</a><a class="" href="company-tasks-open.html">Company · Task Center open</a><a class="" href="company-no-tasks.html">Company · no tasks</a><a class="" href="loan.html">Funding #3 overview</a><a class="" href="fpa.html">FP&A overview</a><a class="" href="form.html">Form (Funding #3)</a><a class="" href="documents-loan.html">Documents (Funding #3)</a><a class="" href="documents.html">Documents (Company)</a><a class="" href="messages.html">Messages</a><a class="" href="email-logs.html">Email Logs</a><a class="" href="connections.html">Connections</a><a class="" href="pnl.html">P&L</a><a class="" href="transactions.html">Transactions</a><a class="" href="exports.html">Exports</a><a class="on" href="exports-modal.html">Exports · Full Accounting Export dialog</a><a class="" href="fpa-model.html">FP&A model</a><a class="" href="loans.html">Loans Performance (Company)</a><a class="" href="loans-loan.html">Loans Performance (Funding #3) · record payment</a><a class="" href="loans-no-loan.html">Loans Performance · no loan yet · new loan</a><a class="" href="loans-loan-new.html">Loans Performance · loan just created</a><a class="" href="loans-past.html">Past loan (Funding #2)</a><a class="" href="rejected.html">Rejected application (Funding #1)</a><a class="" href="inactive-engagement.html">Ended engagement (Accounting, Inactive)</a><a class="" href="reports-loans.html">Reports · Loans Performances</a><a class="" href="no-access-documents.html">No access · documents</a><a class="" href="no-access-loans.html">No access · loans</a><a class="" href="request-access.html">Provision client access</a><a class="" href="access-settings.html">Settings · access requests</a><a class="" href="required-documents.html">Definitions · required documents per product</a><a class="" href="people.html">People (Company)</a><h6>Client dashboard</h6><a class="" href="client-status.html">Status (Funding #3) + access request</a><a class="" href="client-loan.html">Loan tab</a><a class="" href="client-loans-overview.html">Your loans at a glance (all loans)</a><a class="" href="client-documents.html">Documents</a><a class="" href="client-documents-upload.html">Documents · upload dialog</a><a class="" href="client-documents-relabel.html">Documents · re-label</a><a class="" href="client-documents-version.html">Documents · new version of a company document</a><a class="" href="client-documents-fpa.html">Documents (FP&A)</a><a class="" href="client-documents-fpa-upload.html">Documents (FP&A) · upload dialog</a><a class="" href="client-documents-fpa-relabel.html">Documents (FP&A) · re-label</a><a class="" href="client-documents-accounting.html">Documents (Bookkeeping & Accounting)</a><a class="" href="client-documents-accounting-upload.html">Documents (Accounting) · upload dialog</a><a class="" href="client-documents-accounting-relabel.html">Documents (Accounting) · re-label</a><a class="" href="client-repaid.html">Repaid loan (Funding #2)</a><a class="" href="client-rejected.html">Rejected application (Funding #1)</a><a class="" href="client-fpa.html">FP&A · Active</a><a class="" href="client-notifications.html">Requires attention panel (bell, every product)</a><a class="" href="client-accounting-inactive.html">Accounting · Inactive</a><a class="" href="client-accounting-active.html">Accounting · Active (variant)</a><a class="" href="client-fpa-inactive.html">FP&A · Inactive (variant)</a><a class="" href="connect-start.html">New application · share connections?</a><a class="" href="connect-company-1.html">Connect · Company info 1/2 (pre-filled, locked)</a><a class="" href="connect-company-2.html">Connect · Company info 2/2</a><a class="" href="connect-mission.html">Connect · Mission</a><a class="" href="connect-personal.html">Connect · Personal info</a><a class="" href="connect-financials-1.html">Connect · Financials 1/4 (connections shared)</a><a class="" href="connect-financials-2.html">Connect · Financials 2/4</a><a class="" href="connect-financials-3.html">Connect · Financials 3/4</a><a class="" href="connect-financials-4.html">Connect · Financials 4/4 (this loan)</a><a class="" href="connect-contracts.html">Connect · Contracts (this loan)</a><a class="" href="connect-review.html">Connect · Review & submit</a></div></details><script>
+(function(){
+function fit(){document.body.style.zoom=Math.min(1,document.documentElement.clientWidth/1600)}fit();addEventListener('resize',fit);
+var t=document.createElement('div');t.className='toast';document.documentElement.appendChild(t);var tt;
+function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
+var BUILD='6ad0b273';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
+var me=location.pathname.split('/').pop()||'index.html';
+var txt=function(el){return el.textContent.replace(/\s+/g,' ').trim()};
+// ---------- EP Central
+var MAP={company:{'fourstars':'company.html','Products':'company.html','Form':'form.html','Documents':'documents.html','Messages':'messages.html','Email Logs':'email-logs.html','Connections':'connections.html','P&L':'pnl.html','Loans Performance':'loans.html','Transactions':'transactions.html','Exports':'exports.html','FP&A':'fpa-model.html','People':'people.html'},
+ loan:{'fourstars':'loan.html','Products':'loan.html','Form':'form.html','Documents':'documents-loan.html','Loans Performance':'loans-loan.html'},
+ fpa:{'fourstars':'fpa.html','Products':'fpa.html','FP&A':'fpa-model.html'}};
+function scope(){var on=document.querySelector('.tile.on .nm');var n=on?txt(on):'Company';return /Funding/.test(n)?'loan':/FP/.test(n)?'fpa':'company'}
+function section(){var s=document.querySelector('.side .sub.on');return s?txt(s):'Products'}
+function central(el,x){
+ if(me==='exports-modal.html'){
+  if(el.matches('.xck')){var all=el.dataset.all,box=el.closest('.xbox');if(all){var on=!el.classList.contains('on');[].forEach.call(box.querySelectorAll('.xck'),function(c){c.classList.toggle('on',on)})}else{el.classList.toggle('on');var cks=[].slice.call(box.querySelectorAll('.xck:not([data-all])'));box.querySelector('.xck[data-all]').classList.toggle('on',cks.every(function(c){return c.classList.contains('on')}))}return}
+  if(el.matches('.xrd')){var g=el.closest('[data-grp]').dataset.grp;[].forEach.call(document.querySelectorAll('[data-grp="'+g+'"] .xrd'),function(r){r.classList.remove('on')});el.classList.add('on');return}
+  if(el.matches('.xchg'))return toast('Change folder: not part of this prototype');
+  if(/Export with current data/i.test(x)){var n=document.querySelectorAll('.xck.on:not([data-all])').length;if(!n)return toast('Please select at least one connection to export');var tree=[].filter.call(document.querySelectorAll('[data-grp="tree"]'),function(r){return r.querySelector('.xrd.on')})[0];tree=tree?txt(tree).replace(/\(default\).*$/,'').replace(/📁.*$/,'').trim():'';toast('Export started → '+tree+' / fourstars / Exports (prototype only)');return setTimeout(function(){go('exports.html')},1400)}
+  if(/^Cancel$/.test(x))return go('exports.html')}
+ if(el.matches('.exl a'))return /Full Accounting|asks tree/.test(x)?go('exports-modal.html'):toast(x.replace(/→.*$/,'').trim()+': not part of this prototype');
+ if(el.matches('.tile')){if(el.matches('.add'))return toast('Add product: not part of this prototype');if(el.matches('.past')){var m=document.getElementById('pastmenu');if(m){m.remove();return}
+    el.style.position='relative';el.style.overflow='visible';var hd=el.closest('.hdr');if(hd){hd.style.overflow='visible';hd.style.position='relative';hd.style.zIndex=5}
+    m=document.createElement('div');m.id='pastmenu';m.style.cssText='position:absolute;top:44px;left:0;width:300px;background:#fff;border:1px solid #e6eaf1;border-radius:12px;box-shadow:0 14px 40px rgba(31,42,68,.18);padding:6px;z-index:20;font-weight:400;white-space:normal';
+    [['Funding #2','Repaid','loans-past.html'],['Funding #1','Rejected','rejected.html'],['Bookkeeping & Accounting','Inactive','inactive-engagement.html']].forEach(function(r){var d=document.createElement('div');d.style.cssText='display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:13px;color:#1f2a44;cursor:pointer';d.innerHTML='<b style="font-weight:600"></b><span class="chip '+(r[1]==='Inactive'?'':'r')+'" style="margin-left:auto"></span>';d.firstChild.textContent=r[0];d.lastChild.textContent=r[1];
+      d.onmouseenter=function(){d.style.background='#f3fcf9'};d.onmouseleave=function(){d.style.background=''};d.onclick=function(ev){ev.stopPropagation();if(r[2])go(r[2]);else{m.remove();toast('Inactive engagement: staff view not part of this prototype')}};m.appendChild(d)});
+    el.appendChild(m);return}
+   var n=txt(el.querySelector('.nm')),sc=/Funding/.test(n)?'loan':/FP/.test(n)?'fpa':'company',sec=section();return go(MAP[sc][sec]||MAP[sc]['Products'])}
+ if(el.matches('.side .sub')){var sec=x.replace(/ ⌄$/,'');var sc=scope();var f=(MAP[sc]||{})[sec]||MAP.company[sec];return f?go(f):toast(sec+': not part of this prototype')}
+ if(el.matches('.side .it')){if(/^Reports/.test(x))return go('reports-loans.html');if(/^Companies|^fourstars/.test(x))return go('company.html');if(/^Definitions/.test(x))return go('required-documents.html');if(/^Settings/.test(x))return go('access-settings.html');return toast(x.replace(/[⌄⌃📌]/g,'').trim()+': not part of this prototype')}
+ if(el.matches('.cbtn')){var C={'View All Forms':'form.html','View Document Hub':'documents.html','View Connections Hub':'connections.html','View Transactions':'transactions.html','View Exports':'exports.html','Open product pages':'loan.html','Open inbox':'messages.html'};return C[x]?go(C[x]):toast(x+': not part of this prototype')}
+ if(el.matches('.pr')){return go(/FP/.test(x)?'fpa.html':/Funding #3/.test(x)?'loan.html':'loans-past.html')}
+ if(el.matches('.x')&&/[⌃⌄]/.test(x)&&el.closest('h4')&&/Task Center/.test(txt(el.closest('h4'))))return go(me==='company.html'?'company-tasks-open.html':'company.html');
+ if(el.matches('span')&&/^[⌃⌄]$/.test(x)&&el.closest('h4')&&/Task Center/.test(txt(el.closest('h4'))))return go(me==='company.html'?'company-tasks-open.html':'company.html');
+ if(el.matches('.dt tr')&&!el.querySelector('th')){if(me==='loans.html'||me==='reports-loans.html')return go(/Funding #2|repaid/i.test(x)?'loans-past.html':'loans-loan.html');return}
+ if(el.matches('.btn')){
+  var O=document.getElementById('ovl'),DL=document.getElementById('d-loan'),DP=document.getElementById('d-pay'),DE=document.getElementById('d-edit');
+  function shut(){[O,DL,DP,DE].forEach(function(n){if(n)n.style.display='none'})}
+  if(DE&&/Edit loan/.test(x)&&!el.closest('.drw')){shut();DE.style.display='block';O.style.display='block';return}
+  if(DL&&/New loan/.test(x)&&!el.closest('.drw')){shut();DL.style.display='block';O.style.display='block';return}
+  if(DP&&/Record a payment/.test(x)&&!el.closest('.drw')){shut();DP.style.display='block';O.style.display='block';return}
+  if(el.closest('.drw')){shut();if(/Create loan|Save/.test(x)){toast(/Save changes/.test(x)?'Loan updated (prototype only, nothing is stored)':/Create loan/.test(x)?'Loan created. Its UID reaches the payments worksheet at the next sync (prototype only)':'Saved (prototype only, nothing is stored)');if(/Create loan/.test(x))setTimeout(function(){go('loans-loan-new.html')},900);if(/Save payment/.test(x)&&me==='loans-loan-new.html')setTimeout(function(){go('loans-loan.html')},900)}return}
+  if(/Provision client access|Request client access|Request access/.test(x))return go('request-access.html');
+  if(/^Cancel/.test(x))return history.length>1?history.back():go('company.html');
+  if(/Send request/.test(x)){toast('Request sent to the client (prototype only)');return setTimeout(function(){go('company.html')},1200)}
+  if(/Reactivate engagement/.test(x))return toast('Engagement set back to Active (prototype only)');
+  if(/Go to Company documents/.test(x))return go('documents.html');
+  if(/Open in Reports/.test(x))return go('reports-loans.html');
+  return toast(x.replace(/[☐✉🗑🔑⬆⬇⟳✎]/g,'').trim()+': not part of this prototype')}
+}
+// ---------- Client
+var F3={'Status':'client-status.html','Loan':'client-loan.html','Documents':'client-documents.html'};
+function bump(){var fd=document.body.classList.contains('f3funded');var n=[].filter.call(document.querySelectorAll('.ni'),function(i){return !(fd&&i.classList.contains('f3off'))&&!(!fd&&i.classList.contains('f3on'))}).length;var b=document.querySelector('.bell .bdg'),c=document.querySelector('.np .cnt');if(b){b.textContent=n;b.style.display=n?'':'none'}if(c)c.textContent=n+' open'}
+setTimeout(bump,0);
+function client(el,x){
+ if(el.matches('.pc')){var cur=document.querySelector('.tabs span.on');cur=cur?txt(cur).replace(/NEW/,'').trim():'Status';
+   if(/Funding #3/.test(x))return go(F3[cur]||'client-status.html');if(/Funding #4/.test(x))return go('connect-company-1.html');if(/Funding #2/.test(x))return go('client-repaid.html');if(/Funding #1/.test(x))return go('client-rejected.html');
+   if(/FP&A/.test(x))return go(/Inactive/.test(x)?'client-fpa-inactive.html':cur==='Documents'?'client-documents-fpa.html':'client-fpa.html');if(/Bookkeeping/.test(x))return go(cur==='Documents'?'client-documents-accounting.html':/Inactive/.test(x)?'client-accounting-inactive.html':'client-accounting-active.html')}
+ if(el.matches('.tabs span')){var n=x.replace(/NEW/,'').trim();var sel=document.querySelector('.pc.on .nm');sel=sel?txt(sel):'';
+   if(/Funding #3|Funding #4/.test(sel)&&F3[n])return go(F3[n]);if(/Funding #2/.test(sel)&&n==='Loan')return go('client-repaid.html');if(/Funding #1/.test(sel)&&n==='Status')return go('client-rejected.html');
+   if(n==='Documents'&&/FP&A/.test(sel))return go('client-documents-fpa.html');
+   if(n==='Documents'&&/Bookkeeping/.test(sel))return go('client-documents-accounting.html');
+   if(n==='Status'){if(/FP&A/.test(sel))return go(me.indexOf('fpa-inactive')>-1?'client-fpa-inactive.html':'client-fpa.html');if(/Bookkeeping/.test(sel))return go(me.indexOf('active')>-1&&me.indexOf('inactive')<0?'client-accounting-active.html':'client-accounting-inactive.html')}
+   return toast(n+': not part of this prototype')}
+ if(el.matches('.bell')){var p=document.querySelector('.np');if(!p)return toast('Requires attention: not on this screen');p.style.display=p.style.display==='none'?'':'none';return}
+ if(el.matches('.np .x')){document.querySelector('.np').style.display='none';return}
+ if(el.closest('.ni')){var it=el.closest('.ni');
+  if(/^Approve$|^Decline$/.test(x)){it.remove();bump();return toast(x+'d (prototype only)')}
+  if(/^Share$/.test(x))return go('connect-start.html');
+  if(/^Not now$/.test(x)){it.remove();bump();return toast('Nothing shared. You can share connections later under Accounts')}
+  if(/Upload documents/.test(x))return go('client-documents.html');
+  if(/View schedule/.test(x))return go('client-loan.html');
+  if(/Upload new version/.test(x))return go('client-documents-version.html');
+  return toast(x+': not part of this prototype')}
+ if(el.matches('.sumlink'))return go('client-loans-overview.html');
+ if(el.matches('.newapp'))return go('connect-start.html');
+ if(el.matches('.po')){toast('Label changed (prototype only)');return setTimeout(function(){go(me.indexOf('documents-fpa')>-1?'client-documents-fpa.html':me.indexOf('documents-accounting')>-1?'client-documents-accounting.html':'client-documents.html')},900)}
+ if(el.matches('.cko'))return el.classList.toggle('on');
+ if(el.matches('.opt')){[].forEach.call(document.querySelectorAll('.opt'),function(o){o.classList.remove('on')});return el.classList.add('on')}
+ if(el.matches('.nv'))return go('client-documents-version.html');
+ if(el.matches('.badge')&&/▾/.test(x)&&/documents-(fpa|accounting)/.test(me)){var D=me.indexOf('fpa')>-1?'client-documents-fpa':'client-documents-accounting';return go(/relabel/.test(me)?D+'.html':D+'-relabel.html')}
+ if(el.matches('.badge')&&/▾/.test(x))return go(me==='client-documents-relabel.html'?'client-documents.html':'client-documents-relabel.html');
+ if(el.matches('.btn')){
+  var DOCS=me.indexOf('documents-fpa')>-1?'client-documents-fpa.html':me.indexOf('documents-accounting')>-1?'client-documents-accounting.html':'client-documents.html';
+  if(/Choose file/.test(x))return go(DOCS.replace('.html','-upload.html'));
+  if(/^Upload$/.test(x)){toast('Uploaded (prototype only)');return setTimeout(function(){go(DOCS)},900)}
+  if(/Upload version 4/.test(x)){toast('Version 4 uploaded. Funding #3 and FP&A now see it; your teams are notified (prototype only)');return setTimeout(function(){go('client-documents.html')},1200)}
+  if(/^Cancel|^Back/.test(x))return go(me.indexOf('documents')>-1?DOCS:'client-status.html');
+  if(/Approve|Decline/.test(x)){var r=document.querySelector('.req');if(r)r.style.display='none';return toast(x+'d (prototype only)'.replace('Declined','Declined').replace('Approved','Approved'))}
+  if(/Start a new application/.test(x))return go('connect-start.html');
+  if(/Share with Funding #4/.test(x)){var n=document.querySelectorAll('.cko.on').length;toast(n+' connection'+(n===1?'':'s')+' shared with Funding #4 (prototype only)');return setTimeout(function(){go('connect-company-1.html')},900)}
+  if(/^Not now$/.test(x)){toast('Nothing shared. You can share connections later under Accounts');return setTimeout(function(){go('connect-company-1.html')},900)}
+  if(/Open dashboard/.test(x))return toast('Opens the FP&A dashboard');
+  return toast(x+': not part of this prototype')}
+ if(me==='client-documents-relabel.html'&&!el.closest('.pop'))return go('client-documents.html');
+ if(me==='client-documents-fpa-relabel.html'&&!el.closest('.pop'))return go('client-documents-fpa.html');
+ if(me==='client-documents-accounting-relabel.html'&&!el.closest('.pop'))return go('client-documents-accounting.html');
+}
+document.addEventListener('click',function(e){
+ if(e.target.id==='ovl'){[].forEach.call(document.querySelectorAll('#ovl,.drw'),function(n){n.style.display='none'});return}
+ var dg=e.target.closest('[data-go]');
+ if(dg&&!e.target.closest('.cko')){var g=dg.dataset.go,t=dg.textContent.replace(/\s+/g,' ').trim();
+  if(/Share with Funding #4/.test(t)){var n=document.querySelectorAll('.cko.on').length;toast(n+' connection'+(n===1?'':'s')+' shared with Funding #4 (prototype only)');return setTimeout(function(){go('connect-company-1.html')},900)}
+  if(/^Not now$/.test(t)){toast('Nothing shared. You can share connections later under Accounts');return setTimeout(function(){go('connect-company-1.html')},900)}
+  if(g==='submit'){toast('Application submitted. Funding #4 moves to In Review (prototype only)');return setTimeout(function(){go('client-status.html')},1200)}
+  if(g==='dashboard')return go('client-status.html');
+  if(dg.classList.contains('off'))toast('Prototype: moving on without the required fields');
+  var CN={cn_consent:'connect-start.html',cn_company1:'connect-company-1.html',cn_company2:'connect-company-2.html',cn_mission:'connect-mission.html',cn_personal:'connect-personal.html',cn_fin1:'connect-financials-1.html',cn_fin2:'connect-financials-2.html',cn_fin3:'connect-financials-3.html',cn_fin4:'connect-financials-4.html',cn_contracts:'connect-contracts.html',cn_review:'connect-review.html'};
+  return CN[g]?go(CN[g]):toast(t+': not part of this prototype')}
+ var el=e.target.closest('.xck,.xrd,.xchg,.exl a,.bell,.np .x,.tile,.side .sub,.side .it,.cbtn,.pr,.btn,.dt tr,.pc,.tabs span,.newapp,.po,.opt,.badge,.x,h4 span,.seg span,.fpill,.nv,.sumlink');if(!el)return;
+ var x=txt(el);
+ if(el.matches('.seg span,.fpill'))return window.protoFilter(el);
+ (document.body.dataset.kind==='client'?client:central)(el,x);
+});
+})();
+</script><script>
+(function(){
+var NOOP=/^(All|All loans|All funds|All types|All time|Accounting|Last 12 months)$/;
+var SAMPLE=/^(Last 3M|Last 6M|Last 12M|Banking|Duplicates|PDF bank statements|20\d\d)$/;
+var META={'Greenline Talent, LLC':'ECF1 RBF Active','Front Range Compost':'ECF1 RBF Active','FiberCore Inc.':'ECF2 CGA Active','Flexa Storage':'ECF2 CGA Active','Verdant Energy Solutions':'ECF2 CGA Active','GridPoint Labs, LLC':'ECF2 TRL Paid','Rooftop Power LLC':'ECF2 CGA Active','Polyloop Inc.':'ECF1 CGA Paid','Voltway EV':'ECF2 CGA Paid'};
+var T=function(e){return e.textContent.replace(/\s+/g,' ').trim()};
+function toastMsg(m){var t=document.querySelector('.toast');if(!t)return;t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on')},2400)}
+function groupOf(el){ // pills between spacers form one single-select group
+ if(el.parentNode.classList.contains('seg'))return [].slice.call(el.parentNode.children);
+ var g=[el],p=el.previousElementSibling;while(p&&p.classList.contains('fpill')){g.unshift(p);p=p.previousElementSibling}
+ p=el.nextElementSibling;while(p&&p.classList.contains('fpill')){g.push(p);p=p.nextElementSibling}return g}
+function tokens(){var out=[];[].forEach.call(document.querySelectorAll('.seg span.on,.fpill.on'),function(e){if(!e.closest('.drw'))out.push(T(e))});return out}
+function cellsOf(tr){var c=[].map.call(tr.children,T);var m=META[c[0]];if(m)c=c.concat(m.split(' '));return c}
+function has(c,re){return c.some(function(x){return re.test(x)})}
+function pass(tok,c,all){
+ if(tok==='Accounting'&&all.some(function(r){return r.indexOf('All products')>-1}))return has(c,/^(Accounting|Bookkeeping.*|All products)$/); // documents: Accounting is a product filter, not the transactions source filter
+ if(NOOP.test(tok)||SAMPLE.test(tok))return true;
+ if(/^(Funding #\d|FP&A|Fractional|Past products)$/.test(tok)&&has(c,/^All products$/))return true; // company-wide documents belong to every product
+ if(tok==='Fractional')return has(c,/^(FP&A|Accounting|Bookkeeping.*)$/); // both Fractional CFO business units
+ if(tok==='Past products')return has(c,/^(Funding #[12]|Bookkeeping.*|Accounting)$/);
+ if(tok==='In progress')return has(c,/^in_progress$/);
+ if(tok==='Repaid')return has(c,/^repaid$/i);
+ if(tok==='Repeat borrowers'){var n=c[1];return all.filter(function(r){return r[1]===n}).length>1}
+ if(tok==='Active')return has(c,/^(Active|Overdue)$/i);
+ if(tok==='Contracts')return has(c,/^contracts$/i);
+ if(tok==='Term sheet')return has(c,/term sheet/i);
+ var t=tok.toLowerCase();return c.some(function(x){return x.toLowerCase()===t});
+}
+function apply(){
+ var tb=document.querySelector('.main table.dt');if(!tb)return;
+ var rows=[].filter.call(tb.rows,function(r){return !r.querySelector('th')&&!r.classList.contains('grp')&&!r.classList.contains('nomatch')});
+ var toks=tokens(),q=(document.querySelector('.srch input')||{}).value||'';q=q.trim().toLowerCase();
+ var all=rows.map(cellsOf),shown=0;
+ rows.forEach(function(r,i){var ok=toks.every(function(t){return pass(t,all[i],all)})&&(!q||T(r).toLowerCase().indexOf(q)>-1);r.style.display=ok?'':'none';if(ok)shown++});
+ [].forEach.call(tb.querySelectorAll('tr.grp'),function(g){var n=g.nextElementSibling,any=false;while(n&&!n.classList.contains('grp')){if(n.style.display!=='none'&&!n.classList.contains('nomatch'))any=true;n=n.nextElementSibling}g.style.display=any?'':'none'});
+ var nm=tb.querySelector('tr.nomatch');if(!nm){nm=tb.insertRow(-1);nm.className='nomatch';var td=nm.insertCell(0);td.colSpan=30;td.style.cssText='text-align:center;padding:28px;color:#98a2b6';td.textContent='Nothing matches these filters.'}
+ nm.style.display=shown?'none':'';
+}
+window.protoFilter=function(el){groupOf(el).forEach(function(c){c.classList.remove('on')});el.classList.add('on');var x=T(el);if(SAMPLE.test(x))toastMsg('The sample data does not vary by “'+x+'”');apply()};
+// search boxes become real inputs
+[].forEach.call(document.querySelectorAll('.srch'),function(s){var ph=T(s).replace(/^🔍\s*/,'');s.innerHTML='🔍&nbsp;<input placeholder="'+ph+'" style="border:0;outline:0;background:transparent;font:inherit;color:#1f2a44;width:100%">';s.querySelector('input').addEventListener('input',apply)});
+// Company Task Center chips
+var h4=[].filter.call(document.querySelectorAll('h4'),function(h){return /Company Task Center/.test(T(h))})[0];
+if(h4){var card=h4.parentNode,trs=[].filter.call(card.children,function(n){return n!==h4});var chips=[].slice.call(h4.querySelectorAll('.chip'));var prod=chips.slice(0,3),stat=chips.slice(3);var sel={p:'All',s:'Active'};
+ function mark(){prod.forEach(function(c){c.style.outline=T(c).indexOf(sel.p)===0?'2px solid #12b48c':'none';c.style.outlineOffset='1px'});stat.forEach(function(c){c.style.outline=T(c).indexOf(sel.s)===0?'2px solid #12b48c':'none';c.style.outlineOffset='1px'})}
+ function run(){var shown=0;trs.forEach(function(r){if(r.classList.contains('tnone'))return;var isTask=!!r.querySelector('.chip');if(!isTask)return;var ok=(sel.p==='All'||T(r).indexOf(sel.p)>-1)&&sel.s!=='Overdue';r.style.display=ok?'grid':'none';if(ok)shown++});
+  var e=card.querySelector('.tnone');if(trs.some(function(r){return r.querySelector&&r.querySelector('.chip')})){if(!e){e=document.createElement('div');e.className='tnone';e.style.cssText='text-align:center;padding:22px;color:#98a2b6;font-size:13px';card.appendChild(e)}e.textContent=sel.s==='Overdue'?'No overdue tasks.':'No tasks for this product.';e.style.display=shown?'none':'block'}mark()}
+ chips.forEach(function(c){c.style.cursor='pointer';c.addEventListener('click',function(ev){ev.stopPropagation();var x=T(c).split(' ·')[0].replace(/\s+\d+$/,'').trim();if(prod.indexOf(c)>-1)sel.p=x;else sel.s=x;
+   if(!trs.some(function(r){return r.querySelector&&r.querySelector('.chip')})&&!/no-tasks/.test(location.pathname)){location.href='company-tasks-open.html#'+encodeURIComponent(sel.p+'|'+sel.s);return}run()})});
+ if(location.hash.length>1){var a=decodeURIComponent(location.hash.slice(1)).split('|');if(a[1]){sel.p=a[0];sel.s=a[1]}}run();
+}
+apply();
+})();
+</script>
+<script>
+(function(){
+var ALL=['Draft','Verify Client Email','Non US','In Review','User Action Required','Term Sheet','Detailed Diligence — In Review','Detailed Diligence — User Action Required','Definitive Docs Awaiting Signature','Funded','Repaid','Rejected'];
+var ENG=['Active','Inactive','Churned'];
+var PIPE={'Draft':'Draft','Verify Client Email':'Verify Client Email','In Review':'In Review','User Action Required':'User Action Required','Term Sheet':'Term Sheet','Detailed Diligence — In Review':'Detailed Diligence','Detailed Diligence — User Action Required':'Detailed Diligence','Definitive Docs Awaiting Signature':'Definitive Docs','Funded':'Funded','Repaid':'Repaid'};
+var STEP={'Draft':'Application','Verify Client Email':'Email verified','In Review':'In Review','User Action Required':'In Review','Term Sheet':'Term Sheet','Detailed Diligence — In Review':'Diligence','Detailed Diligence — User Action Required':'Diligence','Definitive Docs Awaiting Signature':'Definitive Docs','Funded':'Funded','Repaid':'Funded'};
+var T=function(e){return e.textContent.replace(/\s+/g,' ').trim()};
+function get(k,d){try{return localStorage.getItem(k)||d}catch(e){return d}}
+function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function cls(s){return s==='Funded'||s==='Active'?'g':/Repaid|Rejected|Non US|Churned/.test(s)?'r':s==='Inactive'?'':'v'}
+function track(wrap,label){var sp=[].slice.call(wrap.children),i=-1;sp.forEach(function(x,n){if(T(x)===label)i=n});sp.forEach(function(x,n){x.classList.remove('done','cur');if(i<0)return;if(n<i)x.classList.add('done');if(n===i)x.classList.add('cur')})}
+function isF3(el){return /Funding #3/.test(T(el))}
+var KEYS=[[/Funding #3/,'f3stage_v3','Funded',1],[/FP&A/,'fpastage','Active',0],[/Funding #2/,'f2stage','Repaid',1],[/Funding #1/,'f1stage','Rejected',1],[/Bookkeeping/,'bkstage','Inactive',0]];
+function keyOf(row){var t=T(row);for(var i=0;i<KEYS.length;i++)if(KEYS[i][0].test(t))return KEYS[i];return null}
+function apply(){
+ var s=get('f3stage_v3','Funded'),f=get('fpastage','Active');
+ [].forEach.call(document.querySelectorAll('.tile'),function(t){var n=t.querySelector('.nm'),c=t.querySelector('.chip');if(!n||!c)return;if(T(n)==='Funding #3'){c.textContent=s;c.className='chip '+cls(s)}if(T(n)==='FP&A'){c.textContent=f;c.className='chip '+cls(f)}});
+ [].forEach.call(document.querySelectorAll('.pipe'),function(p){track(p,PIPE[s])});
+ [].forEach.call(document.querySelectorAll('.sel'),function(e){var row=e.closest('.pr');var kk=row?keyOf(row):null;var v=row?(kk?get(kk[1],kk[2]):null):(e.closest('.page')&&document.querySelector('.pipe')?s:null);if(v===null)return;e.textContent=v+' ▾';e.style.width='auto';e.style.minWidth='96px';e.style.maxWidth='190px';e.style.overflow='hidden';e.style.textOverflow='ellipsis';e.style.cursor='pointer';e.title=v});
+ [].forEach.call(document.querySelectorAll('.pc'),function(p){var n=p.querySelector('.nm'),b=p.querySelector('.badge');if(!n||!b)return;if(T(n)==='Funding #3'){b.textContent=s;b.className='badge '+cls(s)}if(T(n)==='FP&A'){b.textContent=f;b.className='badge '+cls(f)}});
+ [].forEach.call(document.querySelectorAll('.steps'),function(p){track(p,STEP[s])});
+ [].forEach.call(document.querySelectorAll('.tile.past .chip'),function(c){c.textContent=get('f2stage','Repaid')+' · '+get('f1stage','Rejected')+' · '+get('bkstage','Inactive')});
+ var fd=(s==='Funded'||s==='Repaid');document.body.classList.toggle('f3funded',fd);
+ if(/client-status/.test(location.pathname)){var em=document.querySelector('h1 em');if(em){em.textContent=s;em.style.color=cls(s)==='g'?'#0a8c6e':cls(s)==='r'?'#e35d6a':''}var sub=document.querySelector('.main .sub');if(sub)sub.textContent=s==='Funded'?'Your loan is funded. Repayments and documents are under the Loan tab.':s==='In Review'?'We’re reviewing your application. We’ll email you updates.':'We’ll email you when this changes.'}
+ [].forEach.call(document.querySelectorAll('.sub.s b, .main .sub b'),function(b){if(ALL.indexOf(T(b))>-1&&/currently/.test(T(b.parentNode)))b.textContent=s});
+ [].forEach.call(document.querySelectorAll('.card .body, .card div'),function(d){if(d.children.length===0&&/^Available once funded/.test(T(d))){d.dataset.orig=d.dataset.orig||d.textContent;d.textContent=(s==='Funded'||s==='Repaid')?'Loan funded. Schedule, payments and totals for this loan are under Loans Performance.':d.dataset.orig}});
+}
+function menu(anchor,list,cur,key,name){
+ var old=document.getElementById('stagemenu');if(old){old.remove();if(old._a===anchor)return}
+ var m=document.createElement('div');m.id='stagemenu';m._a=anchor;var r=anchor.getBoundingClientRect(),z=parseFloat(document.body.style.zoom)||1;
+ m.style.cssText='position:absolute;z-index:60;width:300px;background:#fff;border:1px solid #e6eaf1;border-radius:12px;box-shadow:0 14px 40px rgba(31,42,68,.2);padding:6px;font:500 13px Poppins,sans-serif;color:#1f2a44';
+ m.style.left=Math.max(8,(r.right+window.scrollX)/z-300)+'px';m.style.top=((r.bottom+window.scrollY)/z+6)+'px';
+ var h=document.createElement('div');h.textContent='Customer stage · '+(name||(key==='f3stage_v3'?'Funding #3':'FP&A')).replace('Bookkeeping','Bookkeeping & Accounting');h.style.cssText='font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;padding:8px 12px 6px';m.appendChild(h);
+ list.forEach(function(s){var d=document.createElement('div');d.style.cssText='display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;cursor:pointer'+(s===cur?';background:#eafaf4;color:#0a8c6e;font-weight:600':'');d.textContent=s;
+  if(/Repaid|Rejected|Non US|Inactive|Churned/.test(s)!==/Repaid|Rejected|Non US|Inactive|Churned/.test(cur)){var t=document.createElement('span');t.textContent=/Repaid|Rejected|Non US|Inactive|Churned/.test(s)?'closes product':'reopens product';t.style.cssText='margin-left:auto;font-size:10px;color:#98a2b6;font-weight:400';d.appendChild(t)}
+  if(s===cur){var k=document.createElement('span');k.textContent='✓';k.style.marginLeft='auto';d.appendChild(k)}
+  d.onmouseenter=function(){if(s!==cur)d.style.background='#f6f8fb'};d.onmouseleave=function(){if(s!==cur)d.style.background=''};
+  d.onclick=function(ev){ev.stopPropagation();set(key,s);m.remove();apply();var t=document.querySelector('.toast');if(t){t.textContent='Stage set to “'+s+'” (saved in this browser only)';t.classList.add('on');setTimeout(function(){t.classList.remove('on')},2200)}};m.appendChild(d)});
+ document.body.appendChild(m)}
+document.addEventListener('click',function(e){
+ var el=e.target.closest&&e.target.closest('.sel');
+ if(!el){var o=document.getElementById('stagemenu');if(o&&!e.target.closest('#stagemenu'))o.remove();return}
+ var row=el.closest('.pr');var kk=row?keyOf(row):(document.querySelector('.pipe')?KEYS[0]:null);if(!kk)return;
+ e.stopPropagation();e.preventDefault();menu(el,kk[3]?ALL:ENG,get(kk[1],kk[2]),kk[1],kk[0].source.replace(/\\/g,''))},true);
+apply();
+})();
+</script>
+<script>
+(function(){
+function toast(m){var t=document.querySelector('.toast');if(!t)return;t.textContent=m;t.classList.add('on');clearTimeout(t._u);t._u=setTimeout(function(){t.classList.remove('on')},2400)}
+function uuid(){if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){var r=Math.random()*16|0;return (c==='x'?r:(r&3|8)).toString(16)})}
+[].forEach.call(document.querySelectorAll('.uidrow .uid'),function(e){e.setAttribute('contenteditable','true');e.setAttribute('spellcheck','false');e.title='Type or paste a UID'});
+document.addEventListener('click',function(e){
+ var g=e.target.closest&&e.target.closest('.uidgen,.uidcopy,.uidrow .uid');if(!g)return;e.stopPropagation();
+ var box=g.closest('.uidrow').querySelector('.uid');
+ if(g.classList.contains('uidgen')){box.textContent=uuid();toast('New UID generated')}
+ else if(g.classList.contains('uidcopy')){var v=box.textContent.trim();try{navigator.clipboard.writeText(v)}catch(x){}toast('UID copied: '+v)}
+},true);
+})();
+</script>
+<script>
+(function(){
+function get(){try{return JSON.parse(localStorage.getItem('f4share')||'null')}catch(e){return null}}
+window.saveShare=function(v){try{localStorage.setItem('f4share',JSON.stringify(v))}catch(e){}};
+// consent dialog: remember the ticks on Share, remember "nothing" on Not now
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-go]');if(!t)return;var x=t.textContent.trim();
+ if(/^Share with Funding #4$/.test(x)){var v={qb:false,plaid:false};[].forEach.call(document.querySelectorAll('.cko.on'),function(c){if(c.dataset.k)v[c.dataset.k]=true});saveShare(v)}
+ else if(/^Not now$/.test(x))saveShare({qb:false,plaid:false});},true);
+var v=get();if(!v)return;
+var n=document.getElementById('shr-note'),qb=document.getElementById('st-qb'),pl=document.getElementById('st-plaid'),sp=document.getElementById('sub-plaid');
+function st(el,on){if(!el)return;el.textContent=on?'Shared ✓':'Not shared';el.className='st '+(on?'g':'b')}
+st(qb,v.qb);st(pl,v.plaid);if(sp)sp.textContent='last synced 30 Apr · '+(v.plaid?'shared with Funding #4':'not shared with this application');
+if(n){var any=v.qb||v.plaid,all=v.qb&&v.plaid;
+ n.innerHTML=all?'<div class="ic">✓</div><div><b>Already connected, shared with Funding #4</b>You chose to share your existing connections when you started this application. Nothing to connect again. <span class="link" data-go="cn_consent">Change</span></div>'
+  :any?'<div class="ic">✓</div><div><b>Partly shared with Funding #4</b>You shared '+(v.qb?'QuickBooks Online':'Plaid · Chase')+' but not '+(v.qb?'Plaid · Chase':'QuickBooks Online')+'. Connect it below for this application, or <span class="link" data-go="cn_consent">share it</span>.</div>'
+  :'<div class="ic" style="background:#fff1c9">!</div><div><b>Not shared with Funding #4</b>You chose not to share your existing connections when you started this application. Connect accounts for this application below, or <span class="link" data-go="cn_consent">share the existing ones</span>.</div>';
+ if(!all)n.style.background='#fff8e6'}
+var rq=document.getElementById('rv-qb'),rp=document.getElementById('rv-plaid');
+if(rq)rq.textContent='QuickBooks Online · '+(v.qb?'shared':'not shared');if(rp)rp.textContent='Plaid · Chase · '+(v.plaid?'shared':'not shared');
+})();
+</script></body></html>
