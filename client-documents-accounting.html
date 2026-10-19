@@ -186,7 +186,7 @@ html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visi
 function fit(){document.body.style.zoom=Math.min(1,document.documentElement.clientWidth/1600)}fit();addEventListener('resize',fit);
 var t=document.createElement('div');t.className='toast';document.documentElement.appendChild(t);var tt;
 function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
-var BUILD='6ad64f67';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
+var BUILD='6ad64f90';function go(f){location.href=f+(f.indexOf('?')<0?'?b='+BUILD:'')}
 var me=location.pathname.split('/').pop()||'index.html';
 var txt=function(el){return el.textContent.replace(/\s+/g,' ').trim()};
 // ---------- EP Central
@@ -238,13 +238,14 @@ function central(el,x){
 var F3={'Status':'client-status.html','Loan':'client-loan.html','Documents':'client-documents.html'};
 function bump(){var fd=document.body.classList.contains('f3funded');var n=[].filter.call(document.querySelectorAll('.ni'),function(i){return !(fd&&i.classList.contains('f3off'))&&!(!fd&&i.classList.contains('f3on'))}).length;var b=document.querySelector('.bell .bdg'),c=document.querySelector('.np .cnt');if(b){b.textContent=n;b.style.display=n?'':'none'}if(c)c.textContent=n+' open'}
 setTimeout(bump,0);
+setTimeout(function(){if(me!=='client-invoices.html')return;var q=/from=(\w+)/.exec(location.search);if(!q)return;var want=q[1]==='fractional'?'Fractional':'Lending';var pl=[].filter.call(document.querySelectorAll('.fpill'),function(p){return txt(p)===want})[0];if(pl&&window.protoFilter)window.protoFilter(pl)},0);
 function client(el,x){
  if(el.matches('.pc')){var cur=document.querySelector('.tabs span.on');cur=cur?txt(cur).replace(/NEW/,'').trim():'Status';
    if(/Funding #3/.test(x))return go(F3[cur]||'client-status.html');if(/Funding #4/.test(x))return go('connect-company-1.html');if(/Funding #2/.test(x))return go('client-repaid.html');if(/Funding #1/.test(x))return go('client-rejected.html');
    if(/FP&A/.test(x))return go(/Inactive/.test(x)?'client-fpa-inactive.html':cur==='Documents'?'client-documents-fpa.html':'client-fpa.html');if(/Bookkeeping/.test(x))return go(cur==='Documents'?'client-documents-accounting.html':/Inactive/.test(x)?'client-accounting-inactive.html':'client-accounting-active.html')}
  if(el.matches('.tabs span')){var n=x.replace(/NEW/,'').trim();var sel=document.querySelector('.pc.on .nm');sel=sel?txt(sel):'';
    if(/Funding #3|Funding #4/.test(sel)&&F3[n])return go(F3[n]);if(/Funding #2/.test(sel)&&n==='Loan')return go('client-repaid.html');if(/Funding #1/.test(sel)&&n==='Status')return go('client-rejected.html');
-   if(n==='Invoices')return go('client-invoices.html');
+   if(n==='Invoices')return go('client-invoices.html'+(/fractional/.test(me)?'?from=fractional':/loans-overview/.test(me)?'?from=lending':''));
    if(n==='Documents'&&/FP&A/.test(sel))return go('client-documents-fpa.html');
    if(n==='Documents'&&/Bookkeeping/.test(sel))return go('client-documents-accounting.html');
    if(n==='Status'){if(/FP&A/.test(sel))return go(me.indexOf('fpa-inactive')>-1?'client-fpa-inactive.html':'client-fpa.html');if(/Bookkeeping/.test(sel))return go(me.indexOf('active')>-1&&me.indexOf('inactive')<0?'client-accounting-active.html':'client-accounting-inactive.html')}
@@ -289,10 +290,10 @@ function client(el,x){
   if(/Manage in Stripe/.test(x))return toast('Stripe customer portal: update card, see all receipts (prototype only)');
   if(/Update billing email/.test(x))return toast('Billing email: not part of this prototype');
   if(/^Ask us$/.test(x))return toast('Opens a message to the FP&A team about this service (prototype only)');
-  if(/^All invoices$/.test(x))return go('client-invoices.html');
+  if(/^All invoices$/.test(x))return go('client-invoices.html?from=fractional');
   if(/^Open$/.test(x)&&me==='client-fractional.html')return toast('Contract PDF opens in a new tab (prototype only)');
   if(/^Open loan$/.test(x))return go('client-loan.html');
-  if(/^Payments & invoices$/.test(x))return go('client-invoices.html');
+  if(/^Payments & invoices$/.test(x))return go('client-invoices.html?from=lending');
   if(/^Documents$/.test(x)){var pc=el.closest('.card');var h=pc?txt(pc.querySelector('h3')):'';return go(/FP&A/.test(h)?'client-documents-fpa.html':/Bookkeeping/.test(h)?'client-documents-accounting.html':'client-documents.html')}
   if(/^Your loans at a glance$/.test(x))return go('client-loans-overview.html');
   if(/^See all$/.test(x)||/^Review$/.test(x)){var b=document.querySelector('.bell');if(b)b.click();return}
@@ -339,6 +340,7 @@ function pass(tok,c,all){
  if(tok==='Accounting'&&all.some(function(r){return r.indexOf('All products')>-1}))return has(c,/^(Accounting|Bookkeeping.*|All products)$/); // documents: Accounting is a product filter, not the transactions source filter
  if(NOOP.test(tok)||SAMPLE.test(tok))return true;
  if(/^(Funding #\d|FP&A|Fractional|Past products)$/.test(tok)&&has(c,/^All products$/))return true; // company-wide documents belong to every product
+ if(tok==='Lending')return has(c,/^Funding #\d+$/);
  if(tok==='Fractional')return has(c,/^(FP&A|Accounting|Bookkeeping.*)$/); // both Fractional CFO business units
  if(tok==='Past products')return has(c,/^(Funding #[12]|Bookkeeping.*|Accounting)$/);
  if(tok==='In progress')return has(c,/^in_progress$/);
