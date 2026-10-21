@@ -167,7 +167,7 @@ html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visi
 function fit(){document.body.style.zoom=Math.min(1,document.documentElement.clientWidth/1600)}fit();addEventListener('resize',fit);
 var t=document.createElement('div');t.className='toast';document.documentElement.appendChild(t);var tt;
 function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
-var BUILD='6ad8d0bf';function go(f){location.href=f+(f.indexOf('?')<0?'?b=':'&b=')+BUILD}
+var BUILD='6ad8d177';function go(f){location.href=f+(f.indexOf('?')<0?'?b=':'&b=')+BUILD}
 var me=location.pathname.split('/').pop()||'index.html';
 var txt=function(el){return el.textContent.replace(/\s+/g,' ').trim()};
 // ---------- EP Central
@@ -228,6 +228,7 @@ function client(el,x){
    if(/FP&A/.test(x))return go(/Inactive/.test(x)?'client-fpa-inactive.html':cur==='Documents'?'client-documents-fpa.html':'client-fpa.html');if(/Bookkeeping/.test(x))return go(cur==='Documents'?'client-documents-accounting.html':/Inactive/.test(x)?'client-accounting-inactive.html':'client-accounting-active.html')}
  if(el.matches('.tabs span')){var n=x.replace(/NEW/,'').trim();var sel=document.querySelector('.pc.on .nm');sel=sel?txt(sel):'';
    if(/Funding #3|Funding #4/.test(sel)&&F3[n])return go(F3[n]);if(/Funding #2/.test(sel)&&n==='Loan')return go('client-repaid.html');if(/Funding #1/.test(sel)&&n==='Status')return go('client-rejected.html');
+   if(n==='Status'&&!sel){var hs=document.querySelector('.sumlink.home.on'),ss=document.querySelector('.sechead.on');if(hs)return go('client-home.html');if(ss)return go(/Fractional/.test(txt(ss))?'client-fractional.html':'client-loans-overview.html')}
    if(n==='Invoices')return go('client-invoices.html'+(/fractional/.test(me)?'?from=fractional':/loans-overview/.test(me)?'?from=lending':'?from=home'));
    if(n==='Documents'&&/FP&A/.test(sel))return go('client-documents-fpa.html');
    if(n==='Documents'&&/Bookkeeping/.test(sel))return go('client-documents-accounting.html');
