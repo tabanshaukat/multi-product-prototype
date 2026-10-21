@@ -188,7 +188,7 @@ html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visi
 function fit(){document.body.style.zoom=Math.min(1,document.documentElement.clientWidth/1600)}fit();addEventListener('resize',fit);
 var t=document.createElement('div');t.className='toast';document.documentElement.appendChild(t);var tt;
 function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
-var BUILD='6ad8ce02';function go(f){location.href=f+(f.indexOf('?')<0?'?b=':'&b=')+BUILD}
+var BUILD='6ad8d0bf';function go(f){location.href=f+(f.indexOf('?')<0?'?b=':'&b=')+BUILD}
 var me=location.pathname.split('/').pop()||'index.html';
 var txt=function(el){return el.textContent.replace(/\s+/g,' ').trim()};
 // ---------- EP Central
@@ -242,14 +242,14 @@ function bump(){var fd=document.body.classList.contains('f3funded');var n=[].fil
 setTimeout(bump,0);
 [].forEach.call(document.querySelectorAll('.sechead[data-sec]'),function(h){var sec=h.dataset.sec,body=document.querySelector('.secbody[data-sec="'+sec+'"]');var st='';try{st=localStorage.getItem('railsec_'+sec)||''}catch(e){}if(st==='closed'&&!h.classList.contains('on')&&!(body&&body.querySelector('.pc.on'))){h.classList.add('closed');if(body)body.classList.add('closed')}});
 window.syncSec=function(){var on=[].map.call(document.querySelectorAll('.fpill.grp.on'),txt)[0];[].forEach.call(document.querySelectorAll('.sechead'),function(h){h.classList.toggle('on',(on==='Lending'&&/Lending/.test(txt(h)))||(on==='Fractional'&&/Fractional/.test(txt(h))))})};
-setTimeout(function(){if(me!=='client-invoices.html')return;var q=/from=(\w+)/.exec(location.search);if(!q)return;var want=q[1]==='fractional'?'Fractional':'Lending';var pl=[].filter.call(document.querySelectorAll('.fpill'),function(p){return txt(p)===want})[0];if(pl&&window.protoFilter){window.protoFilter(pl);window.syncSec()}},0);
+setTimeout(function(){if(me!=='client-invoices.html')return;var q=/from=(\w+)/.exec(location.search);var hm=document.querySelector('.sumlink.home');if(hm)hm.classList.toggle('on',!q||q[1]==='home');if(!q||q[1]==='home')return;var want=q[1]==='fractional'?'Fractional':'Lending';var pl=[].filter.call(document.querySelectorAll('.fpill'),function(p){return txt(p)===want})[0];if(pl&&window.protoFilter){window.protoFilter(pl);window.syncSec()}},0);
 function client(el,x){
  if(el.matches('.pc')){var cur=document.querySelector('.tabs span.on');cur=cur?txt(cur).replace(/NEW/,'').trim():'Status';
    if(/Funding #3/.test(x))return go(F3[cur]||'client-status.html');if(/Funding #4/.test(x))return go('connect-company-1.html');if(/Funding #2/.test(x))return go('client-repaid.html');if(/Funding #1/.test(x))return go('client-rejected.html');
    if(/FP&A/.test(x))return go(/Inactive/.test(x)?'client-fpa-inactive.html':cur==='Documents'?'client-documents-fpa.html':'client-fpa.html');if(/Bookkeeping/.test(x))return go(cur==='Documents'?'client-documents-accounting.html':/Inactive/.test(x)?'client-accounting-inactive.html':'client-accounting-active.html')}
  if(el.matches('.tabs span')){var n=x.replace(/NEW/,'').trim();var sel=document.querySelector('.pc.on .nm');sel=sel?txt(sel):'';
    if(/Funding #3|Funding #4/.test(sel)&&F3[n])return go(F3[n]);if(/Funding #2/.test(sel)&&n==='Loan')return go('client-repaid.html');if(/Funding #1/.test(sel)&&n==='Status')return go('client-rejected.html');
-   if(n==='Invoices')return go('client-invoices.html'+(/fractional/.test(me)?'?from=fractional':/loans-overview/.test(me)?'?from=lending':''));
+   if(n==='Invoices')return go('client-invoices.html'+(/fractional/.test(me)?'?from=fractional':/loans-overview/.test(me)?'?from=lending':'?from=home'));
    if(n==='Documents'&&/FP&A/.test(sel))return go('client-documents-fpa.html');
    if(n==='Documents'&&/Bookkeeping/.test(sel))return go('client-documents-accounting.html');
    if(n==='Status'){if(/FP&A/.test(sel))return go(me.indexOf('fpa-inactive')>-1?'client-fpa-inactive.html':'client-fpa.html');if(/Bookkeeping/.test(sel))return go(me.indexOf('active')>-1&&me.indexOf('inactive')<0?'client-accounting-active.html':'client-accounting-inactive.html')}
