@@ -186,7 +186,7 @@ html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visi
 function fit(){document.body.style.zoom=Math.min(1,document.documentElement.clientWidth/1600)}fit();addEventListener('resize',fit);
 var t=document.createElement('div');t.className='toast';document.documentElement.appendChild(t);var tt;
 function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
-var BUILD='6ad8d177';function go(f){location.href=f+(f.indexOf('?')<0?'?b=':'&b=')+BUILD}
+var BUILD='6ae48670';function go(f){location.href=f+(f.indexOf('?')<0?'?b=':'&b=')+BUILD}
 var me=location.pathname.split('/').pop()||'index.html';
 var txt=function(el){return el.textContent.replace(/\s+/g,' ').trim()};
 // ---------- EP Central
@@ -238,7 +238,7 @@ function central(el,x){
 var F3={'Status':'client-status.html','Loan':'client-loan.html','Documents':'client-documents.html'};
 function bump(){var fd=document.body.classList.contains('f3funded');var n=[].filter.call(document.querySelectorAll('.ni'),function(i){return !(fd&&i.classList.contains('f3off'))&&!(!fd&&i.classList.contains('f3on'))}).length;var b=document.querySelector('.bell .bdg'),c=document.querySelector('.np .cnt');if(b){b.textContent=n;b.style.display=n?'':'none'}if(c)c.textContent=n+' open'}
 setTimeout(bump,0);
-[].forEach.call(document.querySelectorAll('.sechead[data-sec]'),function(h){var sec=h.dataset.sec,body=document.querySelector('.secbody[data-sec="'+sec+'"]');var st='';try{st=localStorage.getItem('railsec_'+sec)||''}catch(e){}if(st==='closed'&&!h.classList.contains('on')&&!(body&&body.querySelector('.pc.on'))){h.classList.add('closed');if(body)body.classList.add('closed')}});
+[].forEach.call(document.querySelectorAll('.sechead[data-sec]'),function(h){var sec=h.dataset.sec,body=document.querySelector('.secbody[data-sec="'+sec+'"]');var st='';try{st=localStorage.getItem('railsec_'+sec)||''}catch(e){}if(body&&body.querySelector('.pc.on')){h.classList.remove('closed');body.classList.remove('closed')}else if(st==='open'){h.classList.remove('closed');if(body)body.classList.remove('closed')}else if(st==='closed'&&!h.classList.contains('on')){h.classList.add('closed');if(body)body.classList.add('closed')}});
 window.syncSec=function(){var on=[].map.call(document.querySelectorAll('.fpill.grp.on'),txt)[0];[].forEach.call(document.querySelectorAll('.sechead'),function(h){h.classList.toggle('on',(on==='Lending'&&/Lending/.test(txt(h)))||(on==='Fractional'&&/Fractional/.test(txt(h))))})};
 setTimeout(function(){if(me!=='client-invoices.html')return;var q=/from=(\w+)/.exec(location.search);var hm=document.querySelector('.sumlink.home');if(hm)hm.classList.toggle('on',!q||q[1]==='home');if(!q||q[1]==='home')return;var want=q[1]==='fractional'?'Fractional':'Lending';var pl=[].filter.call(document.querySelectorAll('.fpill'),function(p){return txt(p)===want})[0];if(pl&&window.protoFilter){window.protoFilter(pl);window.syncSec()}},0);
 function client(el,x){
