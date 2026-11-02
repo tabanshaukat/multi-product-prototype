@@ -93,7 +93,63 @@ h1 em.g{color:#12b48c}
 .note{background:#e4faf4;color:#0a8c6e;border-radius:10px;padding:12px 16px;font-size:13.5px;display:flex;gap:10px;align-items:center;margin-bottom:22px}
 .sect{font-size:15px;font-weight:600;margin:22px 0 12px;display:flex;align-items:center;gap:10px}
 .sect .badge{margin-left:2px}
-</style><style>body{height:1000px}.layout{height:924px}</style><style>.layout{grid-template-columns:262px minmax(0,1fr)!important}.main{min-width:0}
+</style><style>body{height:1000px}.layout{height:924px}</style><style>
+body{position:relative}
+.eb{display:flex;align-items:center;gap:22px;border-radius:16px;padding:24px 28px;margin:6px 0 24px;border:1px solid #cdeee3;background:linear-gradient(90deg,#f0fcf8,#fff)}
+.eb.off{border-color:#e6eaf1;background:#f7f9fc}
+.eb .st{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:#e4faf4;color:#0a8c6e}
+.eb.off .st{background:#eef1f6;color:#7d879c}
+.eb .st i{width:8px;height:8px;border-radius:50%;background:#12b48c;display:inline-block}
+.eb.off .st i{background:#b8c2d3}
+.eb h2 em{font-style:normal;color:#0a8c6e}
+.eb.off h2 em{color:#7d879c}
+.eb h2{margin:0 0 6px;font-size:26px;font-weight:700}
+.eb p{margin:0;font-size:15px;color:#4b5772}
+.eb .act{margin-left:auto;flex-shrink:0}
+.dropbig{border:2px dashed #b9e9db;background:#f3fcf9;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 32px;min-height:520px;gap:6px}
+.dropbig .ic{width:72px;height:72px;border-radius:50%;background:#e4faf4;color:#0a8c6e;font-size:30px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.dropbig h3{margin:0;font-size:20px;font-weight:700;color:#1f2a44}
+.dropbig p{margin:0 0 16px;font-size:14.5px;color:#4b5772}
+.dropbig small{margin-top:12px;font-size:12px;color:#98a2b6}
+.dropbig .hint{margin-top:26px;font-size:13px;color:#4b5772;background:#fff;border:1px solid #cdeee3;border-radius:10px;padding:12px 16px;max-width:380px;line-height:1.5}
+.pop{position:absolute;top:26px;right:0;width:310px;background:#fff;border:1px solid #e6eaf1;border-radius:12px;box-shadow:0 14px 40px rgba(31,42,68,.18);padding:12px;z-index:10;text-align:left}
+.pop .ph{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;margin:2px 4px 8px}
+.pop .po{display:flex;gap:10px;align-items:flex-start;border:1.5px solid #e6eaf1;border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.pop .po:last-child{margin-bottom:0}
+.pop .po.on{border-color:#12b48c;background:#f3fcf9}
+.pop .po .rd{width:16px;height:16px;border-radius:50%;border:2px solid #cfd6e0;flex-shrink:0;margin-top:2px}
+.pop .po.on .rd{border-color:#12b48c;box-shadow:inset 0 0 0 3px #fff;background:#12b48c}
+.pop .po b{display:block;font-size:13.5px;font-weight:600;color:#1f2a44}
+.pop .po span{font-size:12px;color:#7d879c}
+.ver{display:block;font-size:11px;color:#98a2b6;margin-top:2px}.ver u{color:#2e5fd6;text-decoration:none;cursor:pointer}
+.vh{border:1px solid #e6eaf1;border-radius:10px;padding:10px 14px;margin-top:14px;font-size:12.5px}.vh div{display:flex;gap:12px;padding:5px 0;color:#4b5772}.vh b{color:#1f2a44;min-width:34px}
+.ovkpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:0 0 22px}.ovkpi{background:#fff;border:1px solid #e6eaf1;border-radius:14px;padding:18px 20px;min-width:0}.ovkpi .ovk{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600}.ovkpi .ovv{font-size:26px;font-weight:700;margin-top:8px;color:#1f2a44}.ovkpi .ovs{font-size:12px;color:#7d879c;margin-top:3px}
+.lt{width:100%;border-collapse:collapse;font-size:14px}.lt th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#98a2b6;font-weight:600;padding:8px 10px;border-bottom:1px solid #e6eaf1}.lt td{padding:12px 10px;border-bottom:1px solid #eef2f7;vertical-align:middle}.lt td.r,.lt th.r{text-align:right}.lt td b{font-weight:600}
+body:not(.f3funded) .f3on{display:none}body.f3funded .f3off{display:none}
+.filters{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 16px}.filters .lb{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6;font-weight:600;margin-right:2px}.filters .fpill{padding:7px 14px;border:1px solid #dfe5ee;border-radius:999px;font-size:13px;font-weight:500;color:#3b4661;background:#fff;cursor:pointer;line-height:1}.filters .fpill.on{border-color:#12b48c;color:#0a8c6e;background:#eafaf4;font-weight:600}.filters .fpill.grp{background:#f6f8fb;border-color:#d9dfe9;color:#1f2a44}.filters .fpill.grp.on{background:#1f2a44;border-color:#1f2a44;color:#fff}.filters .sep{width:1px;height:22px;background:#e6eaf1;margin:0 6px}.filters .fpill.st-due::before,.filters .fpill.st-paid::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;vertical-align:1px}.filters .fpill.st-due::before{background:#c99400}.filters .fpill.st-paid::before{background:#12b48c}.filters .fpill.st-due.on{background:#fff5d6;border-color:#f3e2b3;color:#8a6400}.filters .fpill.st-paid.on{background:#e4faf4;border-color:#b9e9db;color:#0a8c6e}
+.invsec h3.invhead{cursor:pointer;user-select:none}.invsec h3.invhead .chev{display:inline-block;width:16px;font-size:14px;color:#98a2b6;transition:transform .15s}.invsec.closed h3.invhead{margin-bottom:0}.invsec.closed h3.invhead .chev{transform:rotate(-90deg)}.invsec.closed .invbody{display:none}
+.drop.s{padding:12px 18px;display:flex;align-items:center;gap:12px;text-align:left}
+.drop.s small{display:inline;margin:0}
+.ov{position:absolute;inset:0;background:rgba(31,42,68,.45);display:flex;align-items:center;justify-content:center;z-index:20}
+.modal{width:600px;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(31,42,68,.35);padding:28px 30px}
+.modal h3{margin:0 0 4px;font-size:21px;font-weight:700}
+.modal .sub2{font-size:13.5px;color:#7d879c;margin-bottom:18px}
+.opt{display:flex;gap:12px;align-items:flex-start;border:1.5px solid #e6eaf1;border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.opt.on{border-color:#12b48c;background:#f3fcf9}
+.opt .rd{width:18px;height:18px;border-radius:50%;border:2px solid #cfd6e0;flex-shrink:0;margin-top:3px}
+.opt.on .rd{border-color:#12b48c;box-shadow:inset 0 0 0 4px #fff;background:#12b48c}
+.opt b{display:block;font-size:15px;font-weight:600}
+.opt span{font-size:13px;color:#7d879c}
+.filebox{display:flex;align-items:center;gap:10px;border:1px solid #e6eaf1;border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:14px}
+.filebox .m{margin-left:auto;color:#98a2b6;font-size:12px}
+.ft{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+.cko .rd{border-radius:5px}.cko.on .rd{box-shadow:none;background:#12b48c url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/12px no-repeat}
+.cko .m{margin-left:auto;font-size:11.5px;color:#98a2b6;white-space:nowrap;padding-top:2px}
+.req{border:1.5px solid #f3e2b3;background:#fffaf0;border-radius:16px;padding:22px 26px;margin:0 0 24px;display:flex;gap:20px;align-items:center}
+.req .ic{width:52px;height:52px;border-radius:50%;background:#fff1c9;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.req h3{margin:0 0 4px;font-size:18px;font-weight:700}
+.req p{margin:0;color:#4b5772;font-size:14px;line-height:1.5}
+</style><style>.layout{grid-template-columns:262px minmax(0,1fr)!important}.main{min-width:0}
 .drw{position:fixed!important;overflow-y:auto!important;padding-bottom:90px!important}.drw .dft{position:sticky!important;bottom:-90px;margin:20px -30px -90px}
 html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visible!important;height:auto!important;min-height:100vh;position:relative;transform-origin:top left}.layout{height:auto!important;min-height:calc(100vh - 76px)}.main{overflow:visible!important}.ov,.ovl{position:fixed!important}
 .tile,.sub,.it,.btn,.cbtn,.pr,.pc,.tabs span,.newapp,.dt tr,.badge,.po,.x,.opt,.pnav a,.seg span,.fpill,.chip.o{cursor:pointer}
@@ -104,12 +160,12 @@ html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visi
 .pnav h6{margin:8px 12px 4px;font:600 10px/1 -apple-system,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#98a2b6}
 .pnav a{display:block;padding:7px 12px;border-radius:8px;color:#1f2a44;text-decoration:none}.pnav a:hover,.pnav a.on{background:#eafaf4;color:#0a8c6e}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#1f2a44;color:#fff;padding:11px 18px;border-radius:10px;font:500 13px -apple-system,sans-serif;z-index:1000;opacity:0;transition:opacity .2s;pointer-events:none}.toast.on{opacity:1}
-</style></head><body data-kind="client"><div class="top"><div class="logo"><span class="mk"></span>Enduring <b>Planet</b></div><div class="tabs"><span class=" ">Status</span><span class="on new">Loan</span><span class=" ">Documents</span><span class=" ">Accounts</span></div><div class="bell" title="Requires attention"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f2a44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span class="bdg">4</span></div><div class="acct">☺</div></div><div class="layout"><div class="rail"><div class="h">My Products <small>5</small><span class="col">‹</span></div><div class="sumlink home ">⌂&nbsp; Home · all products</div><div class="grp sechead " data-sec="lend"><span class="chev">⌄</span>Lending · 3<span class="lm">overview ›</span></div><div class="secbody" data-sec="lend"><div class="pc"><span class="nm">Funding #3</span><span class="badge v">In Review</span><span class="ds">$250k term loan · 24 months</span></div><div class="grp sechead pasthead" data-sec="past_lend"><span class="chev">⌄</span>Past · 2</div><div class="secbody pastbody" data-sec="past_lend"><div class="pc on"><span class="nm">Funding #2</span><span class="badge r">Repaid</span><span class="ds">$125k term loan · repaid</span></div><div class="pc past"><span class="nm">Funding #1</span><span class="badge r">Rejected</span><span class="ds">Convertible climate loan</span></div></div></div><div class="grp sechead " data-sec="frac"><span class="chev">⌄</span>Fractional · 2<span class="lm">overview ›</span></div><div class="secbody" data-sec="frac"><div class="pc"><span class="nm">FP&amp;A — Reporting</span><span class="badge g">Active</span><span class="ds">Dashboards &amp; monthly reporting · $3,500/mo</span></div><div class="grp sechead pasthead closed" data-sec="past_frac"><span class="chev">⌄</span>Past · 1</div><div class="secbody pastbody closed" data-sec="past_frac"><div class="pc past"><span class="nm">Bookkeeping &amp; Accounting</span><span class="badge r">Inactive</span><span class="ds">Monthly retainer · ended 30 Jun 2026</span></div></div></div><div class="grp sechead" data-sec="more"><span class="chev">⌄</span>More from Enduring Planet</div><div class="secbody" data-sec="more"><div class="pitch"><span><b>Payroll</b><small>Run payroll with your books</small></span><span class="lm">Learn more</span></div><div class="pitch"><span><b>Accounts payable</b><small>Bills paid on time, every time</small></span><span class="lm">Learn more</span></div><div class="pitch"><span><b>FP&amp;A — Forecasting</b><small>12-month forecast and budget</small></span><span class="lm">Learn more</span></div><div class="pitch"><span><b>Fractional CFO</b><small>A CFO without the hire</small></span><span class="lm">Learn more</span></div></div><div class="newapp dis">+ New application</div></div><div class="main">
+</style></head><body data-kind="client"><div class="top"><div class="logo"><span class="mk"></span>Enduring <b>Planet</b></div><div class="tabs"><span class=" ">Status</span><span class="on new">Loan</span><span class=" ">Documents</span><span class=" ">Accounts</span><span class=" ">Invoices</span></div><div class="bell" title="Requires attention"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f2a44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span class="bdg">4</span></div><div class="acct">☺</div></div><div class="layout"><div class="rail"><div class="h">My Products <small>5</small><span class="col">‹</span></div><div class="sumlink home ">⌂&nbsp; Home · all products</div><div class="grp sechead " data-sec="lend"><span class="chev">⌄</span>Lending · 3<span class="lm">overview ›</span></div><div class="secbody" data-sec="lend"><div class="pc"><span class="nm">Funding #3</span><span class="badge v">In Review</span><span class="ds">$250k term loan · 24 months</span></div><div class="grp sechead pasthead" data-sec="past_lend"><span class="chev">⌄</span>Past · 2</div><div class="secbody pastbody" data-sec="past_lend"><div class="pc on"><span class="nm">Funding #2</span><span class="badge r">Repaid</span><span class="ds">$125k term loan · repaid</span></div><div class="pc past"><span class="nm">Funding #1</span><span class="badge r">Rejected</span><span class="ds">Convertible climate loan</span></div></div></div><div class="grp sechead " data-sec="frac"><span class="chev">⌄</span>Fractional · 2<span class="lm">overview ›</span></div><div class="secbody" data-sec="frac"><div class="pc"><span class="nm">FP&amp;A — Reporting</span><span class="badge g">Active</span><span class="ds">Dashboards &amp; monthly reporting · $3,500/mo</span></div><div class="grp sechead pasthead closed" data-sec="past_frac"><span class="chev">⌄</span>Past · 1</div><div class="secbody pastbody closed" data-sec="past_frac"><div class="pc past"><span class="nm">Bookkeeping &amp; Accounting</span><span class="badge r">Inactive</span><span class="ds">Monthly retainer · ended 30 Jun 2026</span></div></div></div><div class="grp sechead" data-sec="more"><span class="chev">⌄</span>More from Enduring Planet</div><div class="secbody" data-sec="more"><div class="pitch"><span><b>Fractional controller retainer hours</b><small>Bookkeeping, payroll &amp; AP on a monthly retainer</small></span><span class="lm">Learn more</span></div><div class="pitch"><span><b>FP&amp;A — Forecasting</b><small>12-month forecast and budget</small></span><span class="lm">Learn more</span></div><div class="pitch"><span><b>Fractional CFO</b><small>A CFO without the hire</small></span><span class="lm">Learn more</span></div></div><div class="newapp dis">+ New application</div></div><div class="main">
 <h1>Your loan: <em class="g">Repaid</em></h1>
 <div class="sub s">Funding #2 · $125,000 term loan · funded 12 Aug 2025 · repaid in full 12 Aug 2026. Thank you!</div>
 <div class="kpi"><div><span>Principal</span><b>$125,000</b></div><div><span>Interest paid</span><b>$16,450</b></div><div><span>Total repaid</span><b>$141,450</b></div><div><span>Payments</span><b>12 / 12</b></div></div>
 <div class="grid">
-<div class="card"><h3>Repayment history <span class="x">Download statement</span></h3><table class="tbl"><tr><th>Month</th><th>Principal</th><th>Interest</th><th class="r">Paid</th></tr><tr><td>Aug 2026</td><td>$10,416</td><td>$1,250</td><td class="r">$11,666 ✓</td></tr><tr><td>Jul 2026</td><td>$10,416</td><td>$1,354</td><td class="r">$11,770 ✓</td></tr><tr><td>Jun 2026</td><td>$10,416</td><td>$1,458</td><td class="r">$11,874 ✓</td></tr><tr><td>May 2026</td><td>$10,416</td><td>$1,562</td><td class="r">$11,978 ✓</td></tr><tr><td>…</td><td></td><td></td><td class="r"></td></tr></table></div>
+<div class="card"><h3>Repayment history <span class="x">Download statement</span></h3><table class="tbl"><tr><th>Month</th><th>Principal</th><th>Interest</th><th class="r">Paid</th><th class="r">Invoice</th></tr><tr><td>Aug 2026</td><td>$10,416</td><td>$1,250</td><td class="r">$11,666 ✓</td><td class="r"><span class="btn link" style="font-size:12.5px">EP-1009</span></td></tr><tr><td>Jul 2026</td><td>$10,416</td><td>$1,354</td><td class="r">$11,770 ✓</td><td class="r"><span class="btn link" style="font-size:12.5px">EP-0990</span></td></tr><tr><td>Jun 2026</td><td>$10,416</td><td>$1,458</td><td class="r">$11,874 ✓</td><td class="r"><span class="btn link" style="font-size:12.5px">EP-0968</span></td></tr><tr><td>May 2026</td><td>$10,416</td><td>$1,562</td><td class="r">$11,978 ✓</td><td class="r"><span class="btn link" style="font-size:12.5px">EP-0945</span></td></tr><tr><td>…</td><td></td><td></td><td class="r"></td><td class="r"></td></tr></table><div style="margin-top:12px;font-size:12.5px;color:#7d879c">Your invoice for each payment will be available on this section once, our payment pull is reflected in your account. Questions? <b style="color:#1f2a44;font-weight:600">credit@enduringplanet.com</b></div></div>
 <div class="card"><h3>Loan documents</h3><div class="doc"><span style="color:#12b48c">📄</span><span>Signed term sheet</span><span class="m">term sheet</span><span class="m">20 Aug 2025</span></div><div class="doc"><span style="color:#12b48c">📄</span><span>Loan agreement — executed</span><span class="m">definitive docs</span><span class="m">28 Aug 2025</span></div><div class="doc"><span style="color:#12b48c">📄</span><span>Payoff confirmation</span><span class="m">letter</span><span class="m">12 Aug 2026</span></div><div style="margin-top:18px;padding:16px;background:#fff;border-radius:10px;border:1px solid #e6eaf1"><b>Need more capital?</b><div style="font-size:13px;color:#4b5772;margin:4px 0 10px">Your company details are saved. A new application takes about 10 minutes.</div><span class="btn">Start a new application</span></div></div>
 </div></div></div><div class="np" style="display:none"><div class="nh"><b>Requires attention</b><span class="cnt">4 open</span><span class="x">Close</span></div>
 <div class="ni"><div class="ic">🔑</div><div><div class="t">The FP&amp;A team is asking to view your account data <span class="badge">All products</span></div><div class="d">View-only access to your Connections, Transactions and P&amp;L to prepare the FY27 operating model. Nothing is shared until you approve.</div><div class="acts"><span class="btn">Approve</span><span class="btn o">Decline</span></div></div><span class="when">2h ago</span></div>
@@ -122,7 +178,7 @@ html{background:#e9edf3;overflow:auto}body{margin:0 auto!important;overflow:visi
 function fit(){document.body.style.zoom=Math.min(1,document.documentElement.clientWidth/1600)}fit();addEventListener('resize',fit);
 var t=document.createElement('div');t.className='toast';document.documentElement.appendChild(t);var tt;
 function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
-var BUILD='6ae486d8';function go(f){location.href=f+(f.indexOf('?')<0?'?b=':'&b=')+BUILD}
+var BUILD='6ae880a9';function go(f){location.href=f+(f.indexOf('?')<0?'?b=':'&b=')+BUILD}
 var me=location.pathname.split('/').pop()||'index.html';
 var txt=function(el){return el.textContent.replace(/\s+/g,' ').trim()};
 // ---------- EP Central
@@ -171,20 +227,21 @@ function central(el,x){
   return toast(x.replace(/[☐✉🗑🔑⬆⬇⟳✎]/g,'').trim()+': not part of this prototype')}
 }
 // ---------- Client
-var F3={'Status':'client-status.html','Loan':'client-loan.html','Documents':'client-documents.html'};
+var F3={'Status':'client-status.html','Loan':'client-loan.html','Documents':'client-documents.html','Invoices':'client-invoices.html?from=lending'};
 function bump(){var fd=document.body.classList.contains('f3funded');var n=[].filter.call(document.querySelectorAll('.ni'),function(i){return !(fd&&i.classList.contains('f3off'))&&!(!fd&&i.classList.contains('f3on'))}).length;var b=document.querySelector('.bell .bdg'),c=document.querySelector('.np .cnt');if(b){b.textContent=n;b.style.display=n?'':'none'}if(c)c.textContent=n+' open'}
 setTimeout(bump,0);
 [].forEach.call(document.querySelectorAll('.sechead[data-sec]'),function(h){var sec=h.dataset.sec,body=document.querySelector('.secbody[data-sec="'+sec+'"]');var st='';try{st=localStorage.getItem('railsec_'+sec)||''}catch(e){}if(body&&body.querySelector('.pc.on')){h.classList.remove('closed');body.classList.remove('closed')}else if(st==='open'){h.classList.remove('closed');if(body)body.classList.remove('closed')}else if(st==='closed'&&!h.classList.contains('on')){h.classList.add('closed');if(body)body.classList.add('closed')}});
 window.syncSec=function(){var on=[].map.call(document.querySelectorAll('.fpill.grp.on'),txt)[0];[].forEach.call(document.querySelectorAll('.sechead'),function(h){h.classList.toggle('on',(on==='Lending'&&/Lending/.test(txt(h)))||(on==='Fractional'&&/Fractional/.test(txt(h))))})};
 setTimeout(function(){if(me!=='client-invoices.html')return;var q=/from=(\w+)/.exec(location.search);var hm=document.querySelector('.sumlink.home');if(hm)hm.classList.toggle('on',!q||q[1]==='home');if(!q||q[1]==='home')return;var want=q[1]==='fractional'?'Fractional':'Lending';var pl=[].filter.call(document.querySelectorAll('.fpill'),function(p){return txt(p)===want})[0];if(pl&&window.protoFilter){window.protoFilter(pl);window.syncSec()}},0);
 function client(el,x){
+ if(el.matches('.invhead')){var sc=el.closest('.invsec');if(sc)sc.classList.toggle('closed');return}
  if(el.matches('.pc')){var cur=document.querySelector('.tabs span.on');cur=cur?txt(cur).replace(/NEW/,'').trim():'Status';
-   if(/Funding #3/.test(x))return go(F3[cur]||'client-status.html');if(/Funding #4/.test(x))return go('connect-company-1.html');if(/Funding #2/.test(x))return go('client-repaid.html');if(/Funding #1/.test(x))return go('client-rejected.html');
+   if(/Funding #3/.test(x))return go(cur==='Documents'?'client-documents.html':'client-loan.html');if(/Funding #4/.test(x))return go('connect-company-1.html');if(/Funding #2/.test(x))return go('client-repaid.html');if(/Funding #1/.test(x))return go('client-rejected.html');
    if(/FP&A/.test(x))return go(/Inactive/.test(x)?'client-fpa-inactive.html':cur==='Documents'?'client-documents-fpa.html':'client-fpa.html');if(/Bookkeeping/.test(x))return go(cur==='Documents'?'client-documents-accounting.html':/Inactive/.test(x)?'client-accounting-inactive.html':'client-accounting-active.html')}
  if(el.matches('.tabs span')){var n=x.replace(/NEW/,'').trim();var sel=document.querySelector('.pc.on .nm');sel=sel?txt(sel):'';
+   if(n==='Invoices')return go('client-invoices.html'+(/fractional/.test(me)?'?from=fractional':(/loans-overview|loan|repaid|rejected|status/.test(me)||/Funding/.test(sel))?'?from=lending':'?from=home'));
    if(/Funding #3|Funding #4/.test(sel)&&F3[n])return go(F3[n]);if(/Funding #2/.test(sel)&&n==='Loan')return go('client-repaid.html');if(/Funding #1/.test(sel)&&n==='Status')return go('client-rejected.html');
    if(n==='Status'&&!sel){var hs=document.querySelector('.sumlink.home.on'),ss=document.querySelector('.sechead.on');if(hs)return go('client-home.html');if(ss)return go(/Fractional/.test(txt(ss))?'client-fractional.html':'client-loans-overview.html')}
-   if(n==='Invoices')return go('client-invoices.html'+(/fractional/.test(me)?'?from=fractional':/loans-overview/.test(me)?'?from=lending':'?from=home'));
    if(n==='Documents'&&/FP&A/.test(sel))return go('client-documents-fpa.html');
    if(n==='Documents'&&/Bookkeeping/.test(sel))return go('client-documents-accounting.html');
    if(n==='Status'){if(/FP&A/.test(sel))return go(me.indexOf('fpa-inactive')>-1?'client-fpa-inactive.html':'client-fpa.html');if(/Bookkeeping/.test(sel))return go(me.indexOf('active')>-1&&me.indexOf('inactive')<0?'client-accounting-active.html':'client-accounting-inactive.html')}
@@ -232,6 +289,8 @@ function client(el,x){
   if(/^Ask us$/.test(x))return toast('Opens a message to the FP&A team about this service (prototype only)');
   if(/^All invoices$/.test(x))return go('client-invoices.html?from=fractional');
   if(/^Open$/.test(x)&&me==='client-fractional.html')return toast('Contract PDF opens in a new tab (prototype only)');
+  if(/Open Status tab/.test(x))return go('client-status.html');
+  if(/^EP-\d+$/.test(x))return toast('Invoice '+x+' PDF opens in a new tab (prototype only)');
   if(/^Open loan$/.test(x))return go('client-loan.html');
   if(/^Payments & invoices$/.test(x))return go('client-invoices.html?from=lending');
   if(/^Documents$/.test(x)){var pc=el.closest('.card');var h=pc?txt(pc.querySelector('h3')):'';return go(/FP&A/.test(h)?'client-documents-fpa.html':/Bookkeeping/.test(h)?'client-documents-accounting.html':'client-documents.html')}
@@ -256,7 +315,7 @@ document.addEventListener('click',function(e){
   if(dg.classList.contains('off'))toast('Prototype: moving on without the required fields');
   var CN={cn_consent:'connect-start.html',cn_company1:'connect-company-1.html',cn_company2:'connect-company-2.html',cn_mission:'connect-mission.html',cn_personal:'connect-personal.html',cn_fin1:'connect-financials-1.html',cn_fin2:'connect-financials-2.html',cn_fin3:'connect-financials-3.html',cn_fin4:'connect-financials-4.html',cn_contracts:'connect-contracts.html',cn_review:'connect-review.html'};
   return CN[g]?go(CN[g]):toast(t+': not part of this prototype')}
- var el=e.target.closest('.invlink,.sechead .lm,.sechead,.pitch,.xck,.xrd,.xchg,.exl a,.bell,.np .x,.tile,.side .sub,.side .it,.cbtn,.pr,.btn,.dt tr,.pc,.tabs span,.newapp,.po,.opt,.badge,.x,h4 span,.seg span,.fpill,.nv,.sumlink');if(!el)return;
+ var el=e.target.closest('.invhead,.invlink,.sechead .lm,.sechead,.pitch,.xck,.xrd,.xchg,.exl a,.bell,.np .x,.tile,.side .sub,.side .it,.cbtn,.pr,.btn,.dt tr,.pc,.tabs span,.newapp,.po,.opt,.badge,.x,h4 span,.seg span,.fpill,.nv,.sumlink');if(!el)return;
  var x=txt(el);
  if(el.matches('.seg span,.fpill')){window.protoFilter(el);if(document.body.dataset.kind==='client'&&window.syncSec)window.syncSec();return}
  (document.body.dataset.kind==='client'?client:central)(el,x);
@@ -281,7 +340,7 @@ function pass(tok,c,all){
  if(NOOP.test(tok)||SAMPLE.test(tok))return true;
  if(/^(Funding #\d|FP&A|Fractional|Past products)$/.test(tok)&&has(c,/^All products$/))return true; // company-wide documents belong to every product
  if(tok==='Lending')return has(c,/^Funding #\d+$/);
- if(tok==='Fractional')return has(c,/^(FP&A|Accounting|Bookkeeping.*)$/); // both Fractional CFO business units
+ if(tok==='Fractional')return has(c,/^(FP&A.*|Accounting|Bookkeeping.*)$/); // both Fractional CFO business units
  if(tok==='Past products')return has(c,/^(Funding #[12]|Bookkeeping.*|Accounting)$/);
  if(tok==='In progress')return has(c,/^in_progress$/);
  if(tok==='Repaid')return has(c,/^repaid$/i);
@@ -292,14 +351,21 @@ function pass(tok,c,all){
  var t=tok.toLowerCase();return c.some(function(x){return x.toLowerCase()===t});
 }
 function apply(){
- var tb=document.querySelector('.main table.dt');if(!tb)return;
- var rows=[].filter.call(tb.rows,function(r){return !r.querySelector('th')&&!r.classList.contains('grp')&&!r.classList.contains('nomatch')});
+ var tbs=[].slice.call(document.querySelectorAll('.main table.dt'));if(!tbs.length)return;
  var toks=tokens(),q=(document.querySelector('.srch input')||{}).value||'';q=q.trim().toLowerCase();
- var all=rows.map(cellsOf),shown=0;
- rows.forEach(function(r,i){var ok=toks.every(function(t){return pass(t,all[i],all)})&&(!q||T(r).toLowerCase().indexOf(q)>-1);r.style.display=ok?'':'none';if(ok)shown++});
- [].forEach.call(tb.querySelectorAll('tr.grp'),function(g){var n=g.nextElementSibling,any=false;while(n&&!n.classList.contains('grp')){if(n.style.display!=='none'&&!n.classList.contains('nomatch'))any=true;n=n.nextElementSibling}g.style.display=any?'':'none'});
- var nm=tb.querySelector('tr.nomatch');if(!nm){nm=tb.insertRow(-1);nm.className='nomatch';var td=nm.insertCell(0);td.colSpan=30;td.style.cssText='text-align:center;padding:28px;color:#98a2b6';td.textContent='Nothing matches these filters.'}
- nm.style.display=shown?'none':'';
+ [].forEach.call(document.querySelectorAll('.invsec[data-invsec]'),function(sec){
+  var k=sec.dataset.invsec;
+  var showSec=!(toks.indexOf('Lending')>-1&&k!=='Lending')&&!(toks.indexOf('Fractional')>-1&&k!=='Fractional');
+  sec.style.display=showSec?'':'none';
+ });
+ tbs.forEach(function(tb){
+  var rows=[].filter.call(tb.rows,function(r){return !r.querySelector('th')&&!r.classList.contains('grp')&&!r.classList.contains('nomatch')});
+  var all=rows.map(cellsOf),shown=0;
+  rows.forEach(function(r,i){var ok=toks.every(function(t){return pass(t,all[i],all)})&&(!q||T(r).toLowerCase().indexOf(q)>-1);r.style.display=ok?'':'none';if(ok)shown++});
+  [].forEach.call(tb.querySelectorAll('tr.grp'),function(g){var n=g.nextElementSibling,any=false;while(n&&!n.classList.contains('grp')){if(n.style.display!=='none'&&!n.classList.contains('nomatch'))any=true;n=n.nextElementSibling}g.style.display=any?'':'none'});
+  var nm=tb.querySelector('tr.nomatch');if(!nm){nm=tb.insertRow(-1);nm.className='nomatch';var td=nm.insertCell(0);td.colSpan=30;td.style.cssText='text-align:center;padding:28px;color:#98a2b6';td.textContent='Nothing matches these filters.'}
+  nm.style.display=shown?'none':'';
+ });
 }
 window.protoFilter=function(el){groupOf(el).forEach(function(c){c.classList.remove('on')});el.classList.add('on');var x=T(el);if(SAMPLE.test(x))toastMsg('The sample data does not vary by “'+x+'”');apply()};
 // search boxes become real inputs
@@ -322,7 +388,7 @@ apply();
 var ALL=['Draft','Verify Client Email','Non US','In Review','User Action Required','Term Sheet','Detailed Diligence — In Review','Detailed Diligence — User Action Required','Definitive Docs Awaiting Signature','Funded','Repaid','Rejected'];
 var ENG=['Active','Inactive','Churned'];
 var PIPE={'Draft':'Draft','Verify Client Email':'Verify Client Email','In Review':'In Review','User Action Required':'User Action Required','Term Sheet':'Term Sheet','Detailed Diligence — In Review':'Detailed Diligence','Detailed Diligence — User Action Required':'Detailed Diligence','Definitive Docs Awaiting Signature':'Definitive Docs','Funded':'Funded','Repaid':'Repaid'};
-var STEP={'Draft':'Application','Verify Client Email':'Email verified','In Review':'In Review','User Action Required':'In Review','Term Sheet':'Term Sheet','Detailed Diligence — In Review':'Diligence','Detailed Diligence — User Action Required':'Diligence','Definitive Docs Awaiting Signature':'Definitive Docs','Funded':'Funded','Repaid':'Funded'};
+var STEP={'Draft':'Application','Verify Client Email':'Email verified','In Review':'In Review','User Action Required':'In Review','Term Sheet':'Term Sheet','Detailed Diligence — In Review':'Diligence','Detailed Diligence — User Action Required':'Diligence','Definitive Docs Awaiting Signature':'Definitive Docs','Funded':'Funded','Repaid':'Repaid'};
 var T=function(e){return e.textContent.replace(/\s+/g,' ').trim()};
 function get(k,d){try{return localStorage.getItem(k)||d}catch(e){return d}}
 function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
